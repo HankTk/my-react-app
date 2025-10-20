@@ -1,0 +1,29 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import ButtonPage from './pages/ButtonPage';
+import LabelPage from './pages/LabelPage';
+import InputPage from './pages/InputPage';
+import CardPage from './pages/CardPage';
+import ModalPage from './pages/ModalPage';
+import '@my-org/react-component-library/styles';
+
+function App() {
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/button" element={<ButtonPage />} />
+          <Route path="/label" element={<LabelPage />} />
+          <Route path="/input" element={<InputPage />} />
+          <Route path="/card" element={<CardPage />} />
+          <Route path="/modal" element={<ModalPage />} />
+        </Routes>
+      </Layout>
+    </Router>
+  );
+}
+
+export default App;

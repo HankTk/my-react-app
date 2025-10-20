@@ -1,0 +1,27 @@
+{
+  "name": "react-component-library-workspace",
+  "version": "1.0.0",
+  "description": "Monorepo for React Component Library and Demo App",
+  "author": "Hidenori Takaku",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/demo-app",
+    "build": "npm run build --workspace=packages/component-library",
+    "build:app": "npm run build --workspace=apps/demo-app",
+    "build:lib": "npm run build --workspace=packages/component-library",
+    "lint": "npm run lint --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.3"
+  }
+}
