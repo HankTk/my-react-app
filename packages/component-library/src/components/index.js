@@ -28,6 +28,25 @@ export {
   modalContentVariants,
   modalOverlayVariants
 } from './ui/ax-modal'
+export {
+  AxChart,
+  chartVariants,
+  createChartData,
+  createDataset
+} from './ui/ax-chart'
+export {
+  AxTable,
+  AxTableHeader,
+  AxTableBody,
+  AxTableRow,
+  AxTableHead,
+  AxTableCell,
+  tableVariants,
+  tableHeaderVariants,
+  tableBodyVariants,
+  tableRowVariants,
+  tableCellVariants
+} from './ui/ax-table'
 
 // Re-export styles
 import '../styles/globals.css'

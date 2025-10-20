@@ -11,6 +11,8 @@ const Navigation = () => {
     { path: '/input', label: 'AxInput', icon: '📝' },
     { path: '/card', label: 'AxCard', icon: '🃏' },
     { path: '/modal', label: 'AxModal', icon: '🪟' },
+    { path: '/chart', label: 'AxChart', icon: '📊' },
+    { path: '/table', label: 'AxTable', icon: '📋' },
   ];
 
   return (

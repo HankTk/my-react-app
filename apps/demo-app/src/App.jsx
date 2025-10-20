@@ -7,6 +7,8 @@ import LabelPage from './pages/LabelPage';
 import InputPage from './pages/InputPage';
 import CardPage from './pages/CardPage';
 import ModalPage from './pages/ModalPage';
+import ChartPage from './pages/ChartPage';
+import TablePage from './pages/TablePage';
 import '@my-org/react-component-library/styles';
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path="/input" element={<InputPage />} />
           <Route path="/card" element={<CardPage />} />
           <Route path="/modal" element={<ModalPage />} />
+          <Route path="/chart" element={<ChartPage />} />
+          <Route path="/table" element={<TablePage />} />
         </Routes>
       </Layout>
     </Router>
