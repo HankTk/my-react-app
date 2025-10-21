@@ -13,7 +13,7 @@
     "noFallthroughCasesInSwitch": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "outDir": "../../dist/out-tsc"
+    "outDir": "./dist"
   },
   "files": [],
   "include": [],

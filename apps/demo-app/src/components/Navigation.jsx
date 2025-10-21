@@ -13,7 +13,7 @@ const Navigation = () => {
     { path: '/card', label: 'AxCard', icon: '🃏' },
     { path: '/modal', label: 'AxModal', icon: '🪟' },
     { path: '/chart', label: 'AxChart', icon: '📊' },
-    { path: '/table', label: 'AxTable', icon: '📋' },
+    { path: '/table', label: 'AxDataTable', icon: '📋' },
     { path: '/css-variables', label: 'CSS Variables', icon: '🎨' },
   ];
 

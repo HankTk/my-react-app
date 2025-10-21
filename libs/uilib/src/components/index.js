@@ -35,7 +35,7 @@ export {
   createDataset
 } from './ui/ax-chart'
 export {
-  AxTable,
+  AxDataTable,
   AxTableHeader,
   AxTableBody,
   AxTableRow,
@@ -46,7 +46,7 @@ export {
   tableBodyVariants,
   tableRowVariants,
   tableCellVariants
-} from './ui/ax-table'
+} from './ui/ax-datatable'
 
 // Re-export styles
 import '../styles/globals.css'

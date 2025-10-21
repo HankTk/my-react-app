@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
-import { AxTable } from '@ax/uilib';
+import { AxDataTable } from '@ax/uilib';
 import './PageStyles.css';
 
 const TablePage = () => {
   const [selectedVariant, setSelectedVariant] = useState('default');
   const [selectedSize, setSelectedSize] = useState('default');
   const [loading, setLoading] = useState(false);
+  
+  // DataTable specific states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchValue, setSearchValue] = useState('');
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [filters, setFilters] = useState({});
 
-  // Sample data
+  // Extended sample data for better demonstration
   const sampleData = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', status: 'Active', salary: 75000 },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 32, role: 'Designer', status: 'Active', salary: 68000 },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', age: 45, role: 'Manager', status: 'Inactive', salary: 95000 },
-    { id: 4, name: 'Alice Brown', email: 'alice@example.com', age: 29, role: 'Developer', status: 'Active', salary: 72000 },
-    { id: 5, name: 'Charlie Wilson', email: 'charlie@example.com', age: 38, role: 'Analyst', status: 'Active', salary: 65000 },
-    { id: 6, name: 'Diana Lee', email: 'diana@example.com', age: 26, role: 'Designer', status: 'Active', salary: 61000 },
-    { id: 7, name: 'Eve Davis', email: 'eve@example.com', age: 41, role: 'Manager', status: 'Active', salary: 88000 },
-    { id: 8, name: 'Frank Miller', email: 'frank@example.com', age: 33, role: 'Developer', status: 'Inactive', salary: 78000 },
+    { id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', status: 'Active', salary: 75000, department: 'Engineering', joinDate: '2022-01-15' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 32, role: 'Designer', status: 'Active', salary: 68000, department: 'Design', joinDate: '2021-08-20' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', age: 45, role: 'Manager', status: 'Inactive', salary: 95000, department: 'Management', joinDate: '2020-03-10' },
+    { id: 4, name: 'Alice Brown', email: 'alice@example.com', age: 29, role: 'Developer', status: 'Active', salary: 72000, department: 'Engineering', joinDate: '2022-06-05' },
+    { id: 5, name: 'Charlie Wilson', email: 'charlie@example.com', age: 38, role: 'Analyst', status: 'Active', salary: 65000, department: 'Analytics', joinDate: '2021-11-12' },
+    { id: 6, name: 'Diana Lee', email: 'diana@example.com', age: 26, role: 'Designer', status: 'Active', salary: 61000, department: 'Design', joinDate: '2023-02-28' },
+    { id: 7, name: 'Eve Davis', email: 'eve@example.com', age: 41, role: 'Manager', status: 'Active', salary: 88000, department: 'Management', joinDate: '2019-09-15' },
+    { id: 8, name: 'Frank Miller', email: 'frank@example.com', age: 33, role: 'Developer', status: 'Inactive', salary: 78000, department: 'Engineering', joinDate: '2021-04-22' },
+    { id: 9, name: 'Grace Taylor', email: 'grace@example.com', age: 31, role: 'Analyst', status: 'Active', salary: 67000, department: 'Analytics', joinDate: '2022-09-08' },
+    { id: 10, name: 'Henry Wilson', email: 'henry@example.com', age: 27, role: 'Developer', status: 'Active', salary: 71000, department: 'Engineering', joinDate: '2023-01-10' },
+    { id: 11, name: 'Ivy Chen', email: 'ivy@example.com', age: 35, role: 'Designer', status: 'Active', salary: 69000, department: 'Design', joinDate: '2021-12-03' },
+    { id: 12, name: 'Jack Anderson', email: 'jack@example.com', age: 42, role: 'Manager', status: 'Active', salary: 92000, department: 'Management', joinDate: '2020-07-18' },
+    { id: 13, name: 'Kate Rodriguez', email: 'kate@example.com', age: 30, role: 'Analyst', status: 'Inactive', salary: 64000, department: 'Analytics', joinDate: '2022-04-14' },
+    { id: 14, name: 'Liam O\'Brien', email: 'liam@example.com', age: 24, role: 'Developer', status: 'Active', salary: 58000, department: 'Engineering', joinDate: '2023-05-20' },
+    { id: 15, name: 'Maya Patel', email: 'maya@example.com', age: 36, role: 'Designer', status: 'Active', salary: 73000, department: 'Design', joinDate: '2021-10-25' },
   ];
 
   const columns = [
@@ -25,11 +38,13 @@ const TablePage = () => {
       title: 'ID',
       width: '80px',
       sortable: true,
+      align: 'center',
     },
     {
       key: 'name',
       title: 'Name',
       sortable: true,
+      filterable: true,
       render: (value, row) => (
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm font-medium text-primary">
@@ -43,6 +58,7 @@ const TablePage = () => {
       key: 'email',
       title: 'Email',
       sortable: true,
+      filterable: true,
       render: (value) => (
         <a href={`mailto:${value}`} className="text-primary hover:underline">
           {value}
@@ -54,11 +70,13 @@ const TablePage = () => {
       title: 'Age',
       width: '80px',
       sortable: true,
+      align: 'center',
     },
     {
       key: 'role',
       title: 'Role',
       sortable: true,
+      filterable: true,
       render: (value) => (
         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
           value === 'Manager' ? 'bg-purple-100 text-purple-800' :
@@ -71,10 +89,20 @@ const TablePage = () => {
       ),
     },
     {
+      key: 'department',
+      title: 'Department',
+      sortable: true,
+      filterable: true,
+      render: (value) => (
+        <span className="text-sm text-muted-foreground">{value}</span>
+      ),
+    },
+    {
       key: 'status',
       title: 'Status',
       width: '100px',
       sortable: true,
+      filterable: true,
       render: (value) => (
         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
           value === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
@@ -88,8 +116,17 @@ const TablePage = () => {
       title: 'Salary',
       width: '120px',
       sortable: true,
+      align: 'right',
       render: (value) => (
         <span className="font-mono">${value.toLocaleString()}</span>
+      ),
+    },
+    {
+      key: 'joinDate',
+      title: 'Join Date',
+      sortable: true,
+      render: (value) => (
+        <span className="text-sm">{new Date(value).toLocaleDateString()}</span>
       ),
     },
   ];
@@ -117,12 +154,70 @@ const TablePage = () => {
     }, 2000);
   };
 
+  // DataTable action handlers
+  const handleEdit = (row, index) => {
+    alert(`Edit employee: ${row.name} (ID: ${row.id})`);
+  };
+
+  const handleDelete = (row, index) => {
+    if (confirm(`Are you sure you want to delete ${row.name}?`)) {
+      alert(`Deleted employee: ${row.name} (ID: ${row.id})`);
+    }
+  };
+
+  const handleView = (row, index) => {
+    alert(`View details for: ${row.name}\nEmail: ${row.email}\nRole: ${row.role}\nDepartment: ${row.department}`);
+  };
+
+  const handleExport = (data) => {
+    const csvContent = [
+      ['ID', 'Name', 'Email', 'Age', 'Role', 'Department', 'Status', 'Salary', 'Join Date'],
+      ...data.map(row => [
+        row.id,
+        row.name,
+        row.email,
+        row.age,
+        row.role,
+        row.department,
+        row.status,
+        row.salary,
+        row.joinDate
+      ])
+    ].map(row => row.join(',')).join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'employees.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const actions = [
+    {
+      label: 'View',
+      onClick: handleView,
+      variant: 'default'
+    },
+    {
+      label: 'Edit',
+      onClick: handleEdit,
+      variant: 'outline'
+    },
+    {
+      label: 'Delete',
+      onClick: handleDelete,
+      variant: 'destructive'
+    }
+  ];
+
   return (
     <div className="page-container">
       <div className="page-content">
         <header className="page-header">
-          <h1 className="page-title">AxTable Component</h1>
-          <p className="page-subtitle">A versatile table component with sorting, loading states, and customizable variants.</p>
+          <h1 className="page-title">AxDataTable Component</h1>
+          <p className="page-subtitle">A powerful data table component with pagination, search, filtering, selection, actions, and export capabilities.</p>
         </header>
 
         <div className="page-sections">
@@ -189,22 +284,96 @@ const TablePage = () => {
           </section>
 
           <section className="page-section">
-            <h2 className="page-section-title">Interactive Table</h2>
+            <h2 className="page-section-title">Full-Featured DataTable</h2>
             <p className="page-section-text">
-              Current settings: {variants.find(v => v.value === selectedVariant)?.label} variant, {sizes.find(s => s.value === selectedSize)?.label} size
+              Complete DataTable with all features enabled. Current settings: {variants.find(v => v.value === selectedVariant)?.label} variant, {sizes.find(s => s.value === selectedSize)?.label} size
             </p>
             <div className="page-content-container">
               <div className="page-content-group">
-                <div className="page-content-group-title">Live Table</div>
-                <AxTable
+                <div className="page-content-group-title">Live DataTable</div>
+                <AxDataTable
                   data={sampleData}
                   columns={columns}
                   variant={selectedVariant}
                   size={selectedSize}
                   loading={loading}
                   onRowClick={handleRowClick}
-                  emptyMessage="No data available"
+                  emptyMessage="No employees found"
+                  
+                  // Pagination
+                  pagination={true}
+                  pageSize={5}
+                  currentPage={currentPage}
+                  onPageChange={setCurrentPage}
+                  
+                  // Search
+                  searchable={true}
+                  searchPlaceholder="Search employees..."
+                  searchValue={searchValue}
+                  onSearchChange={setSearchValue}
+                  
+                  // Filtering
+                  filterable={true}
+                  filters={filters}
+                  onFilterChange={setFilters}
+                  
+                  // Selection
+                  selectable={true}
+                  selectedRows={selectedRows}
+                  onSelectionChange={setSelectedRows}
+                  
+                  // Actions
+                  actions={actions}
+                  
+                  // Export
+                  exportable={true}
+                  onExport={handleExport}
                 />
+              </div>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h2 className="page-section-title">Selection Status</h2>
+            <p className="page-section-text">Currently selected employees and bulk actions.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Selected Items</div>
+                {selectedRows.length > 0 ? (
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">
+                      {selectedRows.length} employee(s) selected:
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedRows.map((row, index) => (
+                        <span key={row.id} className="px-2 py-1 bg-primary/10 text-primary rounded-md text-sm">
+                          {row.name}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-2 mt-4">
+                      <button
+                        onClick={() => alert(`Bulk edit ${selectedRows.length} employees`)}
+                        className="px-3 py-1 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90"
+                      >
+                        Bulk Edit
+                      </button>
+                      <button
+                        onClick={() => {
+                          if (confirm(`Delete ${selectedRows.length} selected employees?`)) {
+                            alert(`Deleted ${selectedRows.length} employees`);
+                            setSelectedRows([]);
+                          }
+                        }}
+                        className="px-3 py-1 bg-destructive text-destructive-foreground rounded-md text-sm hover:bg-destructive/90"
+                      >
+                        Bulk Delete
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">No employees selected</p>
+                )}
               </div>
             </div>
           </section>
@@ -215,7 +384,7 @@ const TablePage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Default Variant</div>
-                <AxTable
+                <AxDataTable
                   data={sampleData.slice(0, 3)}
                   columns={columns.slice(0, 4)}
                   variant="default"
@@ -224,7 +393,7 @@ const TablePage = () => {
               </div>
               <div className="page-content-group">
                 <div className="page-content-group-title">Striped Variant</div>
-                <AxTable
+                <AxDataTable
                   data={sampleData.slice(0, 3)}
                   columns={columns.slice(0, 4)}
                   variant="striped"
@@ -233,7 +402,7 @@ const TablePage = () => {
               </div>
               <div className="page-content-group">
                 <div className="page-content-group-title">Bordered Variant</div>
-                <AxTable
+                <AxDataTable
                   data={sampleData.slice(0, 3)}
                   columns={columns.slice(0, 4)}
                   variant="bordered"
@@ -249,7 +418,7 @@ const TablePage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Small Size</div>
-                <AxTable
+                <AxDataTable
                   data={sampleData.slice(0, 3)}
                   columns={columns.slice(0, 4)}
                   variant="default"
@@ -258,7 +427,7 @@ const TablePage = () => {
               </div>
               <div className="page-content-group">
                 <div className="page-content-group-title">Default Size</div>
-                <AxTable
+                <AxDataTable
                   data={sampleData.slice(0, 3)}
                   columns={columns.slice(0, 4)}
                   variant="default"
@@ -267,7 +436,7 @@ const TablePage = () => {
               </div>
               <div className="page-content-group">
                 <div className="page-content-group-title">Large Size</div>
-                <AxTable
+                <AxDataTable
                   data={sampleData.slice(0, 3)}
                   columns={columns.slice(0, 4)}
                   variant="default"
@@ -283,7 +452,7 @@ const TablePage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Loading Example</div>
-                <AxTable
+                <AxDataTable
                   data={[]}
                   columns={columns.slice(0, 4)}
                   variant="default"
@@ -294,32 +463,59 @@ const TablePage = () => {
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Empty State</h2>
-            <p className="text-muted-foreground mb-6">Display a message when no data is available.</p>
-            <div className="bg-card border rounded-lg p-4">
-              <AxTable
-                data={[]}
-                columns={columns.slice(0, 4)}
-                variant="default"
-                size="default"
-                loading={false}
-                emptyMessage="No employees found. Try adjusting your search criteria."
-              />
+          <section className="page-section">
+            <h2 className="page-section-title">Empty State</h2>
+            <p className="page-section-text">Display a message when no data is available.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Empty State Example</div>
+                <AxDataTable
+                  data={[]}
+                  columns={columns.slice(0, 4)}
+                  variant="default"
+                  size="default"
+                  loading={false}
+                  emptyMessage="No employees found. Try adjusting your search criteria."
+                />
+              </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Custom Column Rendering</h2>
-            <p className="text-muted-foreground mb-6">Examples of custom column rendering with different data types.</p>
-            <div className="bg-card border rounded-lg p-4">
-              <AxTable
-                data={sampleData.slice(0, 5)}
-                columns={columns}
-                variant="striped"
-                size="default"
-                onRowClick={handleRowClick}
-              />
+          <section className="page-section">
+            <h2 className="page-section-title">Pagination Demo</h2>
+            <p className="page-section-text">DataTable with pagination enabled to handle large datasets.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Paginated Table</div>
+                <AxDataTable
+                  data={sampleData}
+                  columns={columns.slice(0, 6)}
+                  variant="striped"
+                  size="default"
+                  pagination={true}
+                  pageSize={3}
+                  searchable={true}
+                  searchPlaceholder="Search employees..."
+                />
+              </div>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h2 className="page-section-title">Actions Demo</h2>
+            <p className="page-section-text">DataTable with row actions for common operations.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Table with Actions</div>
+                <AxDataTable
+                  data={sampleData.slice(0, 5)}
+                  columns={columns.slice(0, 5)}
+                  variant="default"
+                  size="default"
+                  actions={actions}
+                  selectable={true}
+                />
+              </div>
             </div>
           </section>
 
@@ -327,7 +523,7 @@ const TablePage = () => {
             <h2 className="page-section-title">Props</h2>
             <div className="page-content-container">
               <div className="page-content-group">
-                <div className="page-content-group-title">AxTable Props</div>
+                <div className="page-content-group-title">AxDataTable Props</div>
                 <table className="page-props-table">
                   <thead>
                     <tr>
@@ -380,6 +576,108 @@ const TablePage = () => {
                       <td>undefined</td>
                       <td>Row click handler</td>
                     </tr>
+                    <tr>
+                      <td className="page-prop-name">pagination</td>
+                      <td>boolean</td>
+                      <td>false</td>
+                      <td>Enable pagination</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">pageSize</td>
+                      <td>number</td>
+                      <td>10</td>
+                      <td>Number of items per page</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">currentPage</td>
+                      <td>number</td>
+                      <td>1</td>
+                      <td>Current page number</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">onPageChange</td>
+                      <td>(page: number) =&gt; void</td>
+                      <td>undefined</td>
+                      <td>Page change handler</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">searchable</td>
+                      <td>boolean</td>
+                      <td>false</td>
+                      <td>Enable global search</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">searchPlaceholder</td>
+                      <td>string</td>
+                      <td>'検索...'</td>
+                      <td>Search input placeholder</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">searchValue</td>
+                      <td>string</td>
+                      <td>''</td>
+                      <td>Current search value</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">onSearchChange</td>
+                      <td>(value: string) =&gt; void</td>
+                      <td>undefined</td>
+                      <td>Search change handler</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">filterable</td>
+                      <td>boolean</td>
+                      <td>false</td>
+                      <td>Enable filtering</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">filters</td>
+                      <td>Record&lt;string, any&gt;</td>
+                      <td>{}</td>
+                      <td>Current filter values</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">onFilterChange</td>
+                      <td>(filters: Record&lt;string, any&gt;) =&gt; void</td>
+                      <td>undefined</td>
+                      <td>Filter change handler</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">selectable</td>
+                      <td>boolean</td>
+                      <td>false</td>
+                      <td>Enable row selection</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">selectedRows</td>
+                      <td>any[]</td>
+                      <td>[]</td>
+                      <td>Currently selected rows</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">onSelectionChange</td>
+                      <td>(selectedRows: any[]) =&gt; void</td>
+                      <td>undefined</td>
+                      <td>Selection change handler</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">actions</td>
+                      <td>Action[]</td>
+                      <td>[]</td>
+                      <td>Array of row actions</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">exportable</td>
+                      <td>boolean</td>
+                      <td>false</td>
+                      <td>Enable data export</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">onExport</td>
+                      <td>(data: any[]) =&gt; void</td>
+                      <td>undefined</td>
+                      <td>Export handler</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -431,6 +729,18 @@ const TablePage = () => {
                       <td>string</td>
                       <td>✗</td>
                       <td>Column width (CSS value)</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">filterable</td>
+                      <td>boolean</td>
+                      <td>✗</td>
+                      <td>Enable column filtering</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">align</td>
+                      <td>'left' | 'center' | 'right'</td>
+                      <td>✗</td>
+                      <td>Column text alignment</td>
                     </tr>
                   </tbody>
                 </table>
