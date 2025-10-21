@@ -1,12 +1,12 @@
-# React Component Library Monorepo
+# React UI Library Monorepo
 
-This monorepo contains a modern React component library built with TypeScript, Tailwind CSS, and Radix UI primitives, along with a comprehensive demo application showcasing all components.
+This monorepo contains a modern React UI component library built with TypeScript, Tailwind CSS, and Radix UI primitives, along with a comprehensive demo application showcasing all components.
 
 ## Structure
 
 ```
-├── packages/
-│   └── component-library/    # The reusable component library
+├── libs/
+│   └── uilib/               # The reusable UI component library
 │       ├── src/
 │       │   ├── components/
 │       │   │   ├── ui/       # UI components (Button, Card, Input, Label)
@@ -31,9 +31,9 @@ This monorepo contains a modern React component library built with TypeScript, T
 
 ## Packages
 
-### Component Library (`packages/component-library/`)
+### UI Library (`libs/uilib/`)
 
-A modern, reusable React component library built with TypeScript, Tailwind CSS, and Radix UI primitives.
+A modern, reusable React UI component library built with TypeScript, Tailwind CSS, and Radix UI primitives.
 
 **Features:**
 - 🎨 Modern Design with Tailwind CSS styling
@@ -95,7 +95,7 @@ A comprehensive demonstration application that showcases all components from the
 # Install all dependencies
 npm install
 
-# Build the component library
+# Build the UI library
 npm run build:lib
 
 # Start the demo app
@@ -107,13 +107,13 @@ npm run dev
 ### Root Level
 
 - `npm run dev` - Start the demo application
-- `npm run build` - Build the component library
+- `npm run build` - Build the UI library
 - `npm run build:app` - Build the demo application
-- `npm run build:lib` - Build the component library
+- `npm run build:lib` - Build the UI library
 - `npm run lint` - Run ESLint on all packages
 - `npm run clean` - Clean all build artifacts
 
-### Component Library (`packages/component-library/`)
+### UI Library (`libs/uilib/`)
 
 - `npm run dev` - Watch mode for development
 - `npm run build` - Build library and types
@@ -131,9 +131,9 @@ npm run dev
 
 ## Development Workflow
 
-1. **Make changes to the component library:**
+1. **Make changes to the UI library:**
    ```bash
-   cd packages/component-library
+   cd libs/uilib
    npm run dev  # Watch mode
    ```
 
@@ -150,10 +150,10 @@ npm run dev
 
 ## Publishing
 
-To publish the component library:
+To publish the UI library:
 
 ```bash
-cd packages/component-library
+cd libs/uilib
 npm publish
 ```
 

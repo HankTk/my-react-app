@@ -9,7 +9,6 @@ import CardPage from './pages/CardPage';
 import ModalPage from './pages/ModalPage';
 import ChartPage from './pages/ChartPage';
 import TablePage from './pages/TablePage';
-import '@my-org/react-component-library/styles';
 
 function App() {
   return (

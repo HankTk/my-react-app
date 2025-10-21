@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import './Navigation.css';
 
 const Navigation = () => {
   const location = useLocation();
@@ -16,25 +17,23 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="w-64 bg-card border-r border-border h-screen fixed left-0 top-0 overflow-y-auto">
-      <div className="p-6 border-b border-border">
-        <h2 className="text-xl font-bold text-foreground">Ax Component Library</h2>
-        <p className="text-sm text-muted-foreground">React UI Components</p>
+    <nav className="navigation">
+      <div className="navigation-header">
+        <h2>Ax Component Library</h2>
+        <p>React UI Components</p>
       </div>
       
-      <ul className="p-4 space-y-2">
+      <ul className="navigation-list">
         {navItems.map((item) => (
-          <li key={item.path}>
+          <li key={item.path} className="navigation-item">
             <Link
               to={item.path}
-              className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                location.pathname === item.path
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+              className={`navigation-link ${
+                location.pathname === item.path ? 'active' : ''
               }`}
             >
-              <span className="text-lg">{item.icon}</span>
-              {item.label}
+              <div className="navigation-icon">{item.icon}</div>
+              <div className="navigation-label">{item.label}</div>
             </Link>
           </li>
         ))}

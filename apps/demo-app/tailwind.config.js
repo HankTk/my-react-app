@@ -3,8 +3,9 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "../packages/component-library/src/**/*.{js,ts,jsx,tsx}",
-    "../packages/component-library/dist/**/*.{js,ts,jsx,tsx}",
+    "../libs/uilib/src/**/*.{js,ts,jsx,tsx}",
+    "../libs/uilib/dist/**/*.{js,ts,jsx,tsx}",
+    "../../libs/uilib/src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {

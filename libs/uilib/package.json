@@ -1,7 +1,7 @@
 {
-  "name": "@my-org/react-component-library",
+  "name": "@my-org/uilib",
   "version": "1.0.0",
-  "description": "A reusable React component library",
+  "description": "A reusable React UI component library",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

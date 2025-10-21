@@ -1,6 +1,6 @@
-# React Component Library
+# React UI Library
 
-A modern, reusable React component library built with TypeScript and Vite.
+A modern, reusable React UI component library built with TypeScript and Vite.
 
 ## Features
 
@@ -14,7 +14,7 @@ A modern, reusable React component library built with TypeScript and Vite.
 ## Installation
 
 ```bash
-npm install @my-org/react-component-library
+npm install @my-org/uilib
 ```
 
 ## Usage
@@ -22,8 +22,8 @@ npm install @my-org/react-component-library
 ### Basic Usage
 
 ```tsx
-import { AxButton } from '@my-org/react-component-library';
-import '@my-org/react-component-library/styles';
+import { AxButton } from '@my-org/uilib';
+import '@my-org/uilib/styles';
 
 function App() {
   return (
@@ -42,12 +42,12 @@ You can import the styles in two ways:
 
 1. **Import all styles** (recommended for most cases):
 ```tsx
-import '@my-org/react-component-library/styles';
+import '@my-org/uilib/styles';
 ```
 
 2. **Import individual component styles**:
 ```tsx
-import '@my-org/react-component-library/dist/AxButton.css';
+import '@my-org/uilib/dist/AxButton.css';
 ```
 
 ## Components

@@ -1,11 +1,12 @@
 import React from 'react';
 import Navigation from './Navigation';
+import './Layout.css';
 
 const Layout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="layout">
       <Navigation />
-      <main className="ml-64">
+      <main className="main-content">
         {children}
       </main>
     </div>

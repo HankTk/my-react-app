@@ -10,7 +10,8 @@ import {
   AxButton,
   AxInput,
   AxLabel
-} from '@my-org/react-component-library';
+} from '@my-org/uilib';
+import './PageStyles.css';
 
 const AxModalPage = () => {
   const [basicModalOpen, setBasicModalOpen] = useState(false);
@@ -41,21 +42,26 @@ const AxModalPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">AxModal Component</h1>
-          <p className="text-muted-foreground">A flexible modal component with multiple sizes, variants, and interaction patterns.</p>
+    <div className="page-container">
+      <div className="page-content">
+        <header className="page-header">
+          <h1 className="page-title">AxModal Component</h1>
+          <p className="page-subtitle">A flexible modal component with multiple sizes, variants, and interaction patterns.</p>
         </header>
 
-        <div className="space-y-12">
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Basic Modal</h2>
-            <p className="text-muted-foreground mb-6">Simple modal with header, body, and footer.</p>
-            <div className="space-x-4">
-              <AxButton onClick={() => setBasicModalOpen(true)}>
-                Open Basic Modal
-              </AxButton>
+        <div className="page-sections">
+          <section className="page-section">
+            <h2 className="page-section-title">Basic Modal</h2>
+            <p className="page-section-text">Simple modal with header, body, and footer.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Basic Example</div>
+                <div className="space-x-4">
+                  <AxButton onClick={() => setBasicModalOpen(true)}>
+                    Open Basic Modal
+                  </AxButton>
+                </div>
+              </div>
             </div>
 
             <AxModal open={basicModalOpen} onOpenChange={setBasicModalOpen}>
@@ -185,17 +191,33 @@ const AxModalPage = () => {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">Modal Sizes</h2>
             <p className="text-muted-foreground mb-6">Different sizes for different content types.</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <AxButton onClick={() => { setCurrentSize('sm'); setSizeModalOpen(true); }}>
+            <div className="flex flex-wrap gap-6" style={{ gap: '1.5rem' }}>
+              <AxButton 
+                onClick={() => { setCurrentSize('sm'); setSizeModalOpen(true); }}
+                className="w-40"
+                style={{ width: '10rem', minWidth: '10rem' }}
+              >
                 Small Modal
               </AxButton>
-              <AxButton onClick={() => { setCurrentSize('default'); setSizeModalOpen(true); }}>
+              <AxButton 
+                onClick={() => { setCurrentSize('default'); setSizeModalOpen(true); }}
+                className="w-40"
+                style={{ width: '10rem', minWidth: '10rem' }}
+              >
                 Default Modal
               </AxButton>
-              <AxButton onClick={() => { setCurrentSize('lg'); setSizeModalOpen(true); }}>
+              <AxButton 
+                onClick={() => { setCurrentSize('lg'); setSizeModalOpen(true); }}
+                className="w-40"
+                style={{ width: '10rem', minWidth: '10rem' }}
+              >
                 Large Modal
               </AxButton>
-              <AxButton onClick={() => { setCurrentSize('xl'); setSizeModalOpen(true); }}>
+              <AxButton 
+                onClick={() => { setCurrentSize('xl'); setSizeModalOpen(true); }}
+                className="w-40"
+                style={{ width: '10rem', minWidth: '10rem' }}
+              >
                 Extra Large Modal
               </AxButton>
             </div>
@@ -262,59 +284,47 @@ const AxModalPage = () => {
             </AxModal>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Props</h2>
-            <div className="bg-card border rounded-lg p-6">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">AxModal Props</h3>
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="text-left p-2 font-medium">Prop</th>
-                        <th className="text-left p-2 font-medium">Type</th>
-                        <th className="text-left p-2 font-medium">Default</th>
-                        <th className="text-left p-2 font-medium">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-muted-foreground">
-                      <tr className="border-b">
-                        <td className="p-2 font-mono">open</td>
-                        <td className="p-2">boolean</td>
-                        <td className="p-2">false</td>
-                        <td className="p-2">Whether the modal is open</td>
-                      </tr>
-                      <tr className="border-b">
-                        <td className="p-2 font-mono">onOpenChange</td>
-                        <td className="p-2">(open: boolean) =&gt; void</td>
-                        <td className="p-2">-</td>
-                        <td className="p-2">Callback when modal state changes</td>
-                      </tr>
-                      <tr className="border-b">
-                        <td className="p-2 font-mono">size</td>
-                        <td className="p-2">'sm' | 'default' | 'lg' | 'xl' | 'fullscreen'</td>
-                        <td className="p-2">'default'</td>
-                        <td className="p-2">Size of the modal</td>
-                      </tr>
-                      <tr className="border-b">
-                        <td className="p-2 font-mono">overlayVariant</td>
-                        <td className="p-2">'default' | 'light' | 'dark' | 'none'</td>
-                        <td className="p-2">'default'</td>
-                        <td className="p-2">Overlay background variant</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">Subcomponent Props</h3>
-                  <div className="text-sm text-muted-foreground space-y-2">
-                    <p><strong className="text-foreground">AxModalContent:</strong> size, variant ('default' | 'outline' | 'ghost')</p>
-                    <p><strong className="text-foreground">AxModalTitle:</strong> size ('sm' | 'default' | 'lg')</p>
-                    <p><strong className="text-foreground">AxModalDescription:</strong> size ('xs' | 'sm' | 'default' | 'lg')</p>
-                    <p><strong className="text-foreground">AxModalHeader/Body/Footer:</strong> padding ('none' | 'sm' | 'default' | 'lg')</p>
-                  </div>
-                </div>
+          <section className="page-section">
+            <h2 className="page-section-title">Props</h2>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">AxModal Props</div>
+                <table className="page-props-table">
+                  <thead>
+                    <tr>
+                      <th>Prop</th>
+                      <th>Type</th>
+                      <th>Default</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="page-prop-name">open</td>
+                      <td>boolean</td>
+                      <td>false</td>
+                      <td>Whether the modal is open</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">onOpenChange</td>
+                        <td>(open: boolean) =&gt; void</td>
+                      <td>-</td>
+                      <td>Callback when modal state changes</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">size</td>
+                      <td>'sm' | 'default' | 'lg' | 'xl' | 'fullscreen'</td>
+                      <td>'default'</td>
+                      <td>Size of the modal</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">overlayVariant</td>
+                      <td>'default' | 'light' | 'dark' | 'none'</td>
+                      <td>'default'</td>
+                      <td>Overlay background variant</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </section>

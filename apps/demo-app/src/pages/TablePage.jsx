@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { AxTable } from '@my-org/react-component-library';
+import { AxTable } from '@my-org/uilib';
+import './PageStyles.css';
 
 const TablePage = () => {
   const [selectedVariant, setSelectedVariant] = useState('default');
@@ -117,175 +118,179 @@ const TablePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">AxTable Component</h1>
-          <p className="text-muted-foreground">A versatile table component with sorting, loading states, and customizable variants.</p>
+    <div className="page-container">
+      <div className="page-content">
+        <header className="page-header">
+          <h1 className="page-title">AxTable Component</h1>
+          <p className="page-subtitle">A versatile table component with sorting, loading states, and customizable variants.</p>
         </header>
 
-        <div className="space-y-12">
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Table Controls</h2>
-            <p className="text-muted-foreground mb-6">Customize the table appearance and behavior.</p>
-            <div className="flex flex-wrap gap-4 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Variant</label>
-                <div className="flex gap-2">
-                  {variants.map((variant) => (
-                    <button
-                      key={variant.value}
-                      onClick={() => setSelectedVariant(variant.value)}
-                      className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                        selectedVariant === variant.value
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                      }`}
-                    >
-                      {variant.label}
-                    </button>
-                  ))}
+        <div className="page-sections">
+          <section className="page-section">
+            <h2 className="page-section-title">Table Controls</h2>
+            <p className="page-section-text">Customize the table appearance and behavior.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Controls</div>
+                <div className="flex flex-col gap-6 mb-6" style={{ gap: '1.5rem' }}>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Variant</label>
+                    <div className="flex gap-3" style={{ gap: '0.75rem' }}>
+                      {variants.map((variant) => (
+                        <button
+                          key={variant.value}
+                          onClick={() => setSelectedVariant(variant.value)}
+                          className={`px-4 py-2 text-sm rounded-md transition-colors font-medium ${
+                            selectedVariant === variant.value
+                              ? 'bg-primary text-primary-foreground'
+                              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                          }`}
+                          style={{ margin: '0.25rem' }}
+                        >
+                          {variant.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Size</label>
+                    <div className="flex gap-3" style={{ gap: '0.75rem' }}>
+                      {sizes.map((size) => (
+                        <button
+                          key={size.value}
+                          onClick={() => setSelectedSize(size.value)}
+                          className={`px-4 py-2 text-sm rounded-md transition-colors font-medium ${
+                            selectedSize === size.value
+                              ? 'bg-primary text-primary-foreground'
+                              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                          }`}
+                          style={{ margin: '0.25rem' }}
+                        >
+                          {size.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Actions</label>
+                    <div className="flex gap-3" style={{ gap: '0.75rem' }}>
+                      <button
+                        onClick={simulateLoading}
+                        className="px-4 py-2 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors font-medium"
+                        style={{ margin: '0.25rem' }}
+                      >
+                        {loading ? 'Loading...' : 'Simulate Loading'}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Size</label>
-                <div className="flex gap-2">
-                  {sizes.map((size) => (
-                    <button
-                      key={size.value}
-                      onClick={() => setSelectedSize(size.value)}
-                      className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                        selectedSize === size.value
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                      }`}
-                    >
-                      {size.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Actions</label>
-                <button
-                  onClick={simulateLoading}
-                  className="px-3 py-2 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors"
-                >
-                  {loading ? 'Loading...' : 'Simulate Loading'}
-                </button>
               </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Interactive Table</h2>
-            <p className="text-muted-foreground mb-6">
+          <section className="page-section">
+            <h2 className="page-section-title">Interactive Table</h2>
+            <p className="page-section-text">
               Current settings: {variants.find(v => v.value === selectedVariant)?.label} variant, {sizes.find(s => s.value === selectedSize)?.label} size
             </p>
-            <div className="bg-card border rounded-lg p-6">
-              <AxTable
-                data={sampleData}
-                columns={columns}
-                variant={selectedVariant}
-                size={selectedSize}
-                loading={loading}
-                onRowClick={handleRowClick}
-                emptyMessage="No data available"
-              />
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Table Variants</h2>
-            <p className="text-muted-foreground mb-6">Different visual styles for different use cases.</p>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Default Variant</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxTable
-                    data={sampleData.slice(0, 3)}
-                    columns={columns.slice(0, 4)}
-                    variant="default"
-                    size="default"
-                  />
-                </div>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Striped Variant</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxTable
-                    data={sampleData.slice(0, 3)}
-                    columns={columns.slice(0, 4)}
-                    variant="striped"
-                    size="default"
-                  />
-                </div>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Bordered Variant</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxTable
-                    data={sampleData.slice(0, 3)}
-                    columns={columns.slice(0, 4)}
-                    variant="bordered"
-                    size="default"
-                  />
-                </div>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Live Table</div>
+                <AxTable
+                  data={sampleData}
+                  columns={columns}
+                  variant={selectedVariant}
+                  size={selectedSize}
+                  loading={loading}
+                  onRowClick={handleRowClick}
+                  emptyMessage="No data available"
+                />
               </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Table Sizes</h2>
-            <p className="text-muted-foreground mb-6">Different sizes for different contexts.</p>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Small Size</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxTable
-                    data={sampleData.slice(0, 3)}
-                    columns={columns.slice(0, 4)}
-                    variant="default"
-                    size="sm"
-                  />
-                </div>
+          <section className="page-section">
+            <h2 className="page-section-title">Table Variants</h2>
+            <p className="page-section-text">Different visual styles for different use cases.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Default Variant</div>
+                <AxTable
+                  data={sampleData.slice(0, 3)}
+                  columns={columns.slice(0, 4)}
+                  variant="default"
+                  size="default"
+                />
               </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Default Size</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxTable
-                    data={sampleData.slice(0, 3)}
-                    columns={columns.slice(0, 4)}
-                    variant="default"
-                    size="default"
-                  />
-                </div>
+              <div className="page-content-group">
+                <div className="page-content-group-title">Striped Variant</div>
+                <AxTable
+                  data={sampleData.slice(0, 3)}
+                  columns={columns.slice(0, 4)}
+                  variant="striped"
+                  size="default"
+                />
               </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Large Size</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxTable
-                    data={sampleData.slice(0, 3)}
-                    columns={columns.slice(0, 4)}
-                    variant="default"
-                    size="lg"
-                  />
-                </div>
+              <div className="page-content-group">
+                <div className="page-content-group-title">Bordered Variant</div>
+                <AxTable
+                  data={sampleData.slice(0, 3)}
+                  columns={columns.slice(0, 4)}
+                  variant="bordered"
+                  size="default"
+                />
               </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Loading State</h2>
-            <p className="text-muted-foreground mb-6">Show loading skeleton while data is being fetched.</p>
-            <div className="bg-card border rounded-lg p-4">
-              <AxTable
-                data={[]}
-                columns={columns.slice(0, 4)}
-                variant="default"
-                size="default"
-                loading={true}
-              />
+          <section className="page-section">
+            <h2 className="page-section-title">Table Sizes</h2>
+            <p className="page-section-text">Different sizes for different contexts.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Small Size</div>
+                <AxTable
+                  data={sampleData.slice(0, 3)}
+                  columns={columns.slice(0, 4)}
+                  variant="default"
+                  size="sm"
+                />
+              </div>
+              <div className="page-content-group">
+                <div className="page-content-group-title">Default Size</div>
+                <AxTable
+                  data={sampleData.slice(0, 3)}
+                  columns={columns.slice(0, 4)}
+                  variant="default"
+                  size="default"
+                />
+              </div>
+              <div className="page-content-group">
+                <div className="page-content-group-title">Large Size</div>
+                <AxTable
+                  data={sampleData.slice(0, 3)}
+                  columns={columns.slice(0, 4)}
+                  variant="default"
+                  size="lg"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h2 className="page-section-title">Loading State</h2>
+            <p className="page-section-text">Show loading skeleton while data is being fetched.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Loading Example</div>
+                <AxTable
+                  data={[]}
+                  columns={columns.slice(0, 4)}
+                  variant="default"
+                  size="default"
+                  loading={true}
+                />
+              </div>
             </div>
           </section>
 
@@ -318,112 +323,150 @@ const TablePage = () => {
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Props</h2>
-            <div className="bg-card border rounded-lg p-6">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left p-2 font-medium">Prop</th>
-                    <th className="text-left p-2 font-medium">Type</th>
-                    <th className="text-left p-2 font-medium">Default</th>
-                    <th className="text-left p-2 font-medium">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="text-muted-foreground">
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">data</td>
-                    <td className="p-2">any[]</td>
-                    <td className="p-2">[]</td>
-                    <td className="p-2">Array of data objects</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">columns</td>
-                    <td className="p-2">Column[]</td>
-                    <td className="p-2">[]</td>
-                    <td className="p-2">Array of column definitions</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">variant</td>
-                    <td className="p-2">'default' | 'striped' | 'bordered'</td>
-                    <td className="p-2">'default'</td>
-                    <td className="p-2">Visual style variant</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">size</td>
-                    <td className="p-2">'sm' | 'default' | 'lg'</td>
-                    <td className="p-2">'default'</td>
-                    <td className="p-2">Table size</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">loading</td>
-                    <td className="p-2">boolean</td>
-                    <td className="p-2">false</td>
-                    <td className="p-2">Show loading skeleton</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">emptyMessage</td>
-                    <td className="p-2">string</td>
-                    <td className="p-2">'データがありません'</td>
-                    <td className="p-2">Message when no data</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">onRowClick</td>
-                    <td className="p-2">(row: any, index: number) =&gt; void</td>
-                    <td className="p-2">undefined</td>
-                    <td className="p-2">Row click handler</td>
-                  </tr>
-                </tbody>
-              </table>
+          <section className="page-section">
+            <h2 className="page-section-title">Props</h2>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">AxTable Props</div>
+                <table className="page-props-table">
+                  <thead>
+                    <tr>
+                      <th>Prop</th>
+                      <th>Type</th>
+                      <th>Default</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="page-prop-name">data</td>
+                      <td>any[]</td>
+                      <td>[]</td>
+                      <td>Array of data objects</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">columns</td>
+                      <td>Column[]</td>
+                      <td>[]</td>
+                      <td>Array of column definitions</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">variant</td>
+                      <td>'default' | 'striped' | 'bordered'</td>
+                      <td>'default'</td>
+                      <td>Visual style variant</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">size</td>
+                      <td>'sm' | 'default' | 'lg'</td>
+                      <td>'default'</td>
+                      <td>Table size</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">loading</td>
+                      <td>boolean</td>
+                      <td>false</td>
+                      <td>Show loading skeleton</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">emptyMessage</td>
+                      <td>string</td>
+                      <td>'データがありません'</td>
+                      <td>Message when no data</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">onRowClick</td>
+                      <td>(row: any, index: number) =&gt; void</td>
+                      <td>undefined</td>
+                      <td>Row click handler</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Column Definition</h2>
-            <p className="text-muted-foreground mb-6">Structure of column objects for table configuration.</p>
-            <div className="bg-card border rounded-lg p-6">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left p-2 font-medium">Property</th>
-                    <th className="text-left p-2 font-medium">Type</th>
-                    <th className="text-left p-2 font-medium">Required</th>
-                    <th className="text-left p-2 font-medium">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="text-muted-foreground">
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">key</td>
-                    <td className="p-2">string</td>
-                    <td className="p-2">✓</td>
-                    <td className="p-2">Data property key</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">title</td>
-                    <td className="p-2">string</td>
-                    <td className="p-2">✓</td>
-                    <td className="p-2">Column header text</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">render</td>
-                    <td className="p-2">(value: any, row: any, index: number) =&gt; ReactNode</td>
-                    <td className="p-2">✗</td>
-                    <td className="p-2">Custom cell renderer</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">sortable</td>
-                    <td className="p-2">boolean</td>
-                    <td className="p-2">✗</td>
-                    <td className="p-2">Enable column sorting</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">width</td>
-                    <td className="p-2">string</td>
-                    <td className="p-2">✗</td>
-                    <td className="p-2">Column width (CSS value)</td>
-                  </tr>
-                </tbody>
-              </table>
+          <section className="page-section">
+            <h2 className="page-section-title">Column Definition</h2>
+            <p className="page-section-text">Structure of column objects for table configuration.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Column Properties</div>
+                <table className="page-props-table">
+                  <thead>
+                    <tr>
+                      <th>Property</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="page-prop-name">key</td>
+                      <td>string</td>
+                      <td>✓</td>
+                      <td>Data property key</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">title</td>
+                      <td>string</td>
+                      <td>✓</td>
+                      <td>Column header text</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">render</td>
+                      <td>(value: any, row: any, index: number) =&gt; ReactNode</td>
+                      <td>✗</td>
+                      <td>Custom cell renderer</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">sortable</td>
+                      <td>boolean</td>
+                      <td>✗</td>
+                      <td>Enable column sorting</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">width</td>
+                      <td>string</td>
+                      <td>✗</td>
+                      <td>Column width (CSS value)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="page-content-group">
+                <div className="page-content-group-title">Example Usage</div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <pre className="text-sm text-gray-800 overflow-x-auto">
+{`const columns = [
+  {
+    key: 'id',
+    title: 'ID',
+    width: '80px',
+    sortable: true,
+  },
+  {
+    key: 'name',
+    title: 'Name',
+    sortable: true,
+  },
+  {
+    key: 'status',
+    title: 'Status',
+    render: (value) => (
+      <span className={\`px-2 py-1 rounded-full text-xs \${
+        value === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+      }\`}>
+        {value}
+      </span>
+    ),
+  },
+];`}
+                  </pre>
+                </div>
+              </div>
             </div>
           </section>
         </div>

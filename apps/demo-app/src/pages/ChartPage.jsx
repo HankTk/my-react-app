@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { AxChart, createChartData, createDataset } from '@my-org/react-component-library';
+import { AxChart, createChartData, createDataset } from '@my-org/uilib';
+import './PageStyles.css';
 
 const ChartPage = () => {
   const [selectedChartType, setSelectedChartType] = useState('line');
@@ -174,31 +175,37 @@ const ChartPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">AxChart Component</h1>
-          <p className="text-muted-foreground">A versatile chart component built with Chart.js supporting multiple chart types.</p>
+    <div className="page-container">
+      <div className="page-content">
+        <header className="page-header">
+          <h1 className="page-title">AxChart Component</h1>
+          <p className="page-subtitle">A versatile chart component built with Chart.js supporting multiple chart types.</p>
         </header>
 
-        <div className="space-y-12">
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Chart Type Selector</h2>
-            <p className="text-muted-foreground mb-6">Choose different chart types to see the component in action.</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 mb-6">
-              {chartTypes.map((type) => (
-                <button
-                  key={type.value}
-                  onClick={() => setSelectedChartType(type.value)}
-                  className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                    selectedChartType === type.value
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                  }`}
-                >
-                  {type.label}
-                </button>
-              ))}
+        <div className="page-sections">
+          <section className="page-section">
+            <h2 className="page-section-title">Chart Type Selector</h2>
+            <p className="page-section-text">Choose different chart types to see the component in action.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Chart Types</div>
+                <div className="flex flex-wrap mb-6" style={{ gap: '2rem', justifyContent: 'flex-start' }}>
+                  {chartTypes.map((type) => (
+                    <button
+                      key={type.value}
+                      onClick={() => setSelectedChartType(type.value)}
+                      className={`px-6 py-4 text-sm rounded-lg transition-colors font-medium ${
+                        selectedChartType === type.value
+                          ? 'bg-primary text-primary-foreground shadow-md'
+                          : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:shadow-sm'
+                      }`}
+                      style={{ margin: '0.5rem' }}
+                    >
+                      {type.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
 
@@ -217,97 +224,85 @@ const ChartPage = () => {
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Chart Sizes</h2>
-            <p className="text-muted-foreground mb-6">Different sizes for different contexts.</p>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Small Chart</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxChart
-                    type="line"
-                    data={lineChartData}
-                    size="sm"
-                    variant="default"
-                    title="Small Chart"
-                  />
-                </div>
+          <section className="page-section">
+            <h2 className="page-section-title">Chart Sizes</h2>
+            <p className="page-section-text">Different sizes for different contexts.</p>
+            <div className="page-content-container" style={{ gap: '4rem' }}>
+              <div className="page-content-group" style={{ padding: '3rem' }}>
+                <h3 className="text-lg font-medium text-foreground mb-4">Small Chart</h3>
+                <AxChart
+                  type="line"
+                  data={lineChartData}
+                  size="sm"
+                  variant="default"
+                  title="Small Chart"
+                />
               </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Default Chart</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxChart
-                    type="bar"
-                    data={barChartData}
-                    size="default"
-                    variant="default"
-                    title="Default Chart"
-                  />
-                </div>
+              <div className="page-content-group" style={{ padding: '3rem' }}>
+                <h3 className="text-lg font-medium text-foreground mb-4">Default Chart</h3>
+                <AxChart
+                  type="bar"
+                  data={barChartData}
+                  size="default"
+                  variant="default"
+                  title="Default Chart"
+                />
               </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Large Chart</h3>
-                <div className="bg-card border rounded-lg p-4">
-                  <AxChart
-                    type="pie"
-                    data={pieChartData}
-                    size="lg"
-                    variant="default"
-                    title="Large Chart"
-                  />
-                </div>
+              <div className="page-content-group" style={{ padding: '3rem' }}>
+                <h3 className="text-lg font-medium text-foreground mb-4">Large Chart</h3>
+                <AxChart
+                  type="pie"
+                  data={pieChartData}
+                  size="lg"
+                  variant="default"
+                  title="Large Chart"
+                />
               </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Chart Variants</h2>
-            <p className="text-muted-foreground mb-6">Different visual styles for different use cases.</p>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Default Variant</h3>
-                <div className="bg-background border rounded-lg p-4">
-                  <AxChart
-                    type="doughnut"
-                    data={doughnutChartData}
-                    size="default"
-                    variant="default"
-                    title="Default Variant"
-                  />
-                </div>
+          <section className="page-section">
+            <h2 className="page-section-title">Chart Variants</h2>
+            <p className="page-section-text">Different visual styles for different use cases.</p>
+            <div className="page-content-container" style={{ gap: '4rem' }}>
+              <div className="page-content-group" style={{ padding: '3rem' }}>
+                <h3 className="text-lg font-medium text-foreground mb-4">Default Variant</h3>
+                <AxChart
+                  type="doughnut"
+                  data={doughnutChartData}
+                  size="default"
+                  variant="default"
+                  title="Default Variant"
+                />
               </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Card Variant</h3>
-                <div className="bg-background border rounded-lg p-4">
-                  <AxChart
-                    type="polarArea"
-                    data={polarAreaData}
-                    size="default"
-                    variant="default"
-                    title="Card Variant"
-                  />
-                </div>
+              <div className="page-content-group" style={{ padding: '3rem' }}>
+                <h3 className="text-lg font-medium text-foreground mb-4">Card Variant</h3>
+                <AxChart
+                  type="polarArea"
+                  data={polarAreaData}
+                  size="default"
+                  variant="default"
+                  title="Card Variant"
+                />
               </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground mb-2">Transparent Variant</h3>
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 border rounded-lg p-4">
-                  <AxChart
-                    type="radar"
-                    data={radarChartData}
-                    size="default"
-                    variant="transparent"
-                    title="Transparent Variant"
-                  />
-                </div>
+              <div className="page-content-group" style={{ padding: '3rem' }}>
+                <h3 className="text-lg font-medium text-foreground mb-4">Transparent Variant</h3>
+                <AxChart
+                  type="radar"
+                  data={radarChartData}
+                  size="default"
+                  variant="transparent"
+                  title="Transparent Variant"
+                />
               </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Chart Examples</h2>
-            <p className="text-muted-foreground mb-6">Various chart types with different data visualizations.</p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-card border rounded-lg p-4">
+          <section className="page-section">
+            <h2 className="page-section-title">Chart Examples</h2>
+            <p className="page-section-text">Various chart types with different data visualizations.</p>
+            <div className="page-content-container" style={{ gap: '4rem' }}>
+              <div className="page-content-group" style={{ padding: '3rem' }}>
                 <AxChart
                   type="line"
                   data={lineChartData}
@@ -317,7 +312,7 @@ const ChartPage = () => {
                   description="Monthly comparison of sales and revenue data"
                 />
               </div>
-              <div className="bg-card border rounded-lg p-4">
+              <div className="page-content-group" style={{ padding: '3rem' }}>
                 <AxChart
                   type="bar"
                   data={barChartData}
@@ -327,7 +322,7 @@ const ChartPage = () => {
                   description="Q1-Q4 performance metrics"
                 />
               </div>
-              <div className="bg-card border rounded-lg p-4">
+              <div className="page-content-group" style={{ padding: '3rem' }}>
                 <AxChart
                   type="pie"
                   data={pieChartData}
@@ -337,7 +332,7 @@ const ChartPage = () => {
                   description="Distribution of website traffic by device type"
                 />
               </div>
-              <div className="bg-card border rounded-lg p-4">
+              <div className="page-content-group" style={{ padding: '3rem' }}>
                 <AxChart
                   type="scatter"
                   data={scatterChartData}
@@ -350,84 +345,106 @@ const ChartPage = () => {
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Props</h2>
-            <div className="bg-card border rounded-lg p-6">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left p-2 font-medium">Prop</th>
-                    <th className="text-left p-2 font-medium">Type</th>
-                    <th className="text-left p-2 font-medium">Default</th>
-                    <th className="text-left p-2 font-medium">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="text-muted-foreground">
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">type</td>
-                    <td className="p-2">'line' | 'bar' | 'pie' | 'doughnut' | 'polarArea' | 'radar' | 'scatter'</td>
-                    <td className="p-2">'line'</td>
-                    <td className="p-2">Chart type from Chart.js</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">data</td>
-                    <td className="p-2">ChartData</td>
-                    <td className="p-2">undefined</td>
-                    <td className="p-2">Chart data object</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">options</td>
-                    <td className="p-2">ChartOptions</td>
-                    <td className="p-2">undefined</td>
-                    <td className="p-2">Chart.js options object</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">size</td>
-                    <td className="p-2">'sm' | 'default' | 'lg' | 'xl' | '2xl' | 'full'</td>
-                    <td className="p-2">'default'</td>
-                    <td className="p-2">Chart size</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">variant</td>
-                    <td className="p-2">'default' | 'card' | 'transparent'</td>
-                    <td className="p-2">'default'</td>
-                    <td className="p-2">Visual style variant</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">title</td>
-                    <td className="p-2">string</td>
-                    <td className="p-2">undefined</td>
-                    <td className="p-2">Chart title</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="p-2 font-mono">description</td>
-                    <td className="p-2">string</td>
-                    <td className="p-2">undefined</td>
-                    <td className="p-2">Chart description</td>
-                  </tr>
-                </tbody>
-              </table>
+          <section className="page-section">
+            <h2 className="page-section-title">Props</h2>
+            <div className="page-content-container" style={{ gap: '3rem' }}>
+              <div className="page-content-group" style={{ padding: '3rem' }}>
+                <div className="page-content-group-title">AxChart Props</div>
+                <table className="page-props-table">
+                  <thead>
+                    <tr>
+                      <th>Prop</th>
+                      <th>Type</th>
+                      <th>Default</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="page-prop-name">type</td>
+                      <td>'line' | 'bar' | 'pie' | 'doughnut' | 'polarArea' | 'radar' | 'scatter'</td>
+                      <td>'line'</td>
+                      <td>Chart type from Chart.js</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">data</td>
+                      <td>ChartData</td>
+                      <td>undefined</td>
+                      <td>Chart data object</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">options</td>
+                      <td>ChartOptions</td>
+                      <td>undefined</td>
+                      <td>Chart.js options object</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">size</td>
+                      <td>'sm' | 'default' | 'lg' | 'xl' | '2xl' | 'full'</td>
+                      <td>'default'</td>
+                      <td>Chart size</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">variant</td>
+                      <td>'default' | 'card' | 'transparent'</td>
+                      <td>'default'</td>
+                      <td>Visual style variant</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">title</td>
+                      <td>string</td>
+                      <td>undefined</td>
+                      <td>Chart title</td>
+                    </tr>
+                    <tr>
+                      <td className="page-prop-name">description</td>
+                      <td>string</td>
+                      <td>undefined</td>
+                      <td>Chart description</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Helper Functions</h2>
-            <p className="text-muted-foreground mb-6">Utility functions to create chart data easily.</p>
-            <div className="bg-card border rounded-lg p-6">
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-lg font-medium text-foreground mb-2">createChartData</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Creates a chart data object with labels and datasets.</p>
-                  <code className="block bg-muted p-3 rounded text-sm font-mono">
-                    createChartData(labels: string[], datasets: Dataset[])
-                  </code>
+          <section className="page-section">
+            <h2 className="page-section-title">Helper Functions</h2>
+            <p className="page-section-text">Utility functions to create chart data easily.</p>
+            <div className="page-content-container" style={{ gap: '4rem' }}>
+              <div className="page-content-group" style={{ padding: '3rem', marginBottom: '2rem' }}>
+                <div className="page-content-group-title">createChartData</div>
+                <p className="text-sm text-muted-foreground mb-6">Creates a chart data object with labels and datasets.</p>
+                <div className="bg-gray-50 p-6 rounded-lg">
+                  <pre className="text-sm text-gray-800 overflow-x-auto">
+{`createChartData(labels: string[], datasets: Dataset[])
+
+// Example:
+const chartData = createChartData(
+  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+  [
+    createDataset('Sales', [12, 19, 3, 5, 2, 3]),
+    createDataset('Revenue', [2, 3, 20, 5, 1, 4])
+  ]
+);`}
+                  </pre>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium text-foreground mb-2">createDataset</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Creates a dataset object with styling options.</p>
-                  <code className="block bg-muted p-3 rounded text-sm font-mono">
-                    createDataset(label: string, data: number[], options?: DatasetOptions)
-                  </code>
+              </div>
+              
+              <div className="page-content-group" style={{ padding: '3rem', marginTop: '2rem' }}>
+                <div className="page-content-group-title">createDataset</div>
+                <p className="text-sm text-muted-foreground mb-6">Creates a dataset object with styling options.</p>
+                <div className="bg-gray-50 p-6 rounded-lg">
+                  <pre className="text-sm text-gray-800 overflow-x-auto">
+{`createDataset(label: string, data: number[], options?: DatasetOptions)
+
+// Example:
+const dataset = createDataset('Sales', [12, 19, 3, 5, 2, 3], {
+  backgroundColor: 'rgba(99, 102, 241, 0.2)',
+  borderColor: 'rgba(99, 102, 241, 1)',
+  tension: 0.1,
+});`}
+                  </pre>
                 </div>
               </div>
             </div>

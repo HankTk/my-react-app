@@ -2,6 +2,7 @@
 export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
+    "../../apps/demo-app/src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
