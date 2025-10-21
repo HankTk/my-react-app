@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AxInput, AxLabel } from '@my-org/uilib';
+import { AxInput, AxLabel } from '@ax/uilib';
 import './PageStyles.css';
 
 const AxInputPage = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AxTable } from '@my-org/uilib';
+import { AxTable } from '@ax/uilib';
 import './PageStyles.css';
 
 const TablePage = () => {

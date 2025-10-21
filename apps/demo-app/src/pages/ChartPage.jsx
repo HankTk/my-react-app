@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AxChart, createChartData, createDataset } from '@my-org/uilib';
+import { AxChart, createChartData, createDataset } from '@ax/uilib';
 import './PageStyles.css';
 
 const ChartPage = () => {

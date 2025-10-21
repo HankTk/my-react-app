@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AxLabel } from '@my-org/uilib';
+import { AxLabel } from '@ax/uilib';
 import './PageStyles.css';
 
 const AxLabelPage = () => {

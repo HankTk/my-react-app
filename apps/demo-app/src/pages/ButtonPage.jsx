@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AxButton } from '@my-org/uilib';
+import { AxButton } from '@ax/uilib';
 import './PageStyles.css';
 
 const AxButtonPage = () => {

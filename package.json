@@ -2,7 +2,8 @@
   "name": "react-uilib-workspace",
   "version": "1.0.0",
   "description": "Monorepo for React Component Library and Demo App",
-  "author": "Hidenori Takaku",
+  "author": "Hidenori Takaku <hidenori@aquilaxeno.com>",
+  "company": "Aquila Xeno",
   "private": true,
   "workspaces": [
     "libs/*",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AxButton, AxLabel } from '@my-org/uilib';
+import { AxButton, AxLabel } from '@ax/uilib';
 import './PageStyles.css';
 
 const HomePage = () => {
@@ -73,13 +73,13 @@ const HomePage = () => {
             <div className="homepage-card">
               <h3 className="homepage-card-title">Installation</h3>
               <div className="homepage-code-block">
-                <code className="homepage-code">npm install @my-org/uilib</code>
+                <code className="homepage-code">npm install @ax/uilib</code>
               </div>
               
               <h3 className="homepage-card-title">Usage</h3>
               <div className="homepage-code-block">
                 <pre className="homepage-code-pre">
-{`import { AxButton, AxLabel } from '@my-org/uilib';
+{`import { AxButton, AxLabel } from '@ax/uilib';
 
 function App() {
   return (

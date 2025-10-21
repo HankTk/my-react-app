@@ -14,7 +14,7 @@ A modern, reusable React UI component library built with TypeScript and Vite.
 ## Installation
 
 ```bash
-npm install @my-org/uilib
+npm install @ax/uilib
 ```
 
 ## Usage
@@ -22,8 +22,8 @@ npm install @my-org/uilib
 ### Basic Usage
 
 ```tsx
-import { AxButton } from '@my-org/uilib';
-import '@my-org/uilib/styles';
+import { AxButton } from '@ax/uilib';
+import '@ax/uilib/styles';
 
 function App() {
   return (
@@ -42,12 +42,12 @@ You can import the styles in two ways:
 
 1. **Import all styles** (recommended for most cases):
 ```tsx
-import '@my-org/uilib/styles';
+import '@ax/uilib/styles';
 ```
 
 2. **Import individual component styles**:
 ```tsx
-import '@my-org/uilib/dist/AxButton.css';
+import '@ax/uilib/dist/AxButton.css';
 ```
 
 ## Components

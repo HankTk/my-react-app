@@ -1,5 +1,5 @@
 {
-  "name": "@my-org/uilib",
+  "name": "@ax/uilib",
   "version": "1.0.0",
   "description": "A reusable React UI component library",
   "type": "module",
@@ -30,7 +30,8 @@
     "ui",
     "library"
   ],
-  "author": "Hidenori Takaku",
+  "author": "Hidenori Takaku <hidenori@aquilaxeno.com>",
+  "company": "Aquila Xeno",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=18.0.0",

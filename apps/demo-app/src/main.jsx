@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 
 // Import component library CSS from built library
-import '@my-org/uilib/styles'
+import '@ax/uilib/styles'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

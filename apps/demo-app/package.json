@@ -12,7 +12,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@my-org/uilib": "file:../../libs/uilib",
+    "@ax/uilib": "file:../../libs/uilib",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "react": "^19.1.1",

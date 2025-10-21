@@ -8,7 +8,7 @@ import {
   AxCardFooter,
   AxButton,
   AxLabel 
-} from '@my-org/uilib';
+} from '@ax/uilib';
 import './PageStyles.css';
 
 const AxCardPage = () => {

@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@my-org/uilib": ["libs/uilib/src/index.ts"]
+      "@ax/uilib": ["libs/uilib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

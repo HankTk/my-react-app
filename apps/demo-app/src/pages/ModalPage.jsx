@@ -10,7 +10,7 @@ import {
   AxButton,
   AxInput,
   AxLabel
-} from '@my-org/uilib';
+} from '@ax/uilib';
 import './PageStyles.css';
 
 const AxModalPage = () => {
