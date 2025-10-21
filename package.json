@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "dev": "nx serve demo-app",
+    "stop": "pkill -f \"nx serve demo-app\"",
     "build": "nx build uilib",
     "build:app": "nx build demo-app",
     "build:lib": "nx build uilib",

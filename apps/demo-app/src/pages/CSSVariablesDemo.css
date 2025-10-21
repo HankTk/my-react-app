@@ -1,0 +1,233 @@
+/* CSS Variables Demo Styles */
+
+.css-variables-demo {
+  padding: var(--spacing-xl);
+  background-color: hsl(var(--background));
+  min-height: 100vh;
+}
+
+.demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.demo-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: hsl(var(--foreground));
+  margin-bottom: var(--spacing-sm);
+}
+
+.demo-subtitle {
+  color: hsl(var(--muted-foreground));
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.demo-section {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  box-shadow: var(--shadow-sm);
+}
+
+.demo-section-title {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Spacing Demo */
+.spacing-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.spacing-box {
+  padding: var(--spacing-md);
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: var(--radius);
+  font-weight: 500;
+  text-align: center;
+  min-width: 120px;
+}
+
+.spacing-box.spacing-xs {
+  padding: var(--spacing-xs);
+}
+
+.spacing-box.spacing-sm {
+  padding: var(--spacing-sm);
+}
+
+.spacing-box.spacing-md {
+  padding: var(--spacing-md);
+}
+
+.spacing-box.spacing-lg {
+  padding: var(--spacing-lg);
+}
+
+.spacing-box.spacing-xl {
+  padding: var(--spacing-xl);
+}
+
+/* Typography Demo */
+.typography-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  color: hsl(var(--foreground));
+  margin: 0;
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+  color: hsl(var(--foreground));
+  margin: 0;
+}
+
+.text-base {
+  font-size: var(--font-size-base);
+  color: hsl(var(--foreground));
+  margin: 0;
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+  color: hsl(var(--foreground));
+  margin: 0;
+}
+
+.text-xl {
+  font-size: var(--font-size-xl);
+  color: hsl(var(--foreground));
+  margin: 0;
+}
+
+/* Shadow Demo */
+.shadow-demo {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.shadow-box {
+  padding: var(--spacing-lg);
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  text-align: center;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  min-width: 150px;
+}
+
+.shadow-box.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-box.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-box.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Color Demo */
+.color-demo {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.color-box {
+  padding: var(--spacing-lg);
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 500;
+  min-width: 120px;
+  color: white;
+}
+
+.color-box.primary {
+  background-color: hsl(var(--primary));
+}
+
+.color-box.secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.color-box.accent {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.color-box.muted {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+}
+
+.color-box.destructive {
+  background-color: hsl(var(--destructive));
+}
+
+/* Custom Demo */
+.custom-demo {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-box {
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  text-align: center;
+  min-width: 300px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .css-variables-demo {
+    padding: var(--spacing-md);
+  }
+  
+  .demo-title {
+    font-size: 2rem;
+  }
+  
+  .spacing-demo {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .shadow-demo {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .color-demo {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .custom-box {
+    min-width: auto;
+  }
+}

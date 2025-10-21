@@ -13,14 +13,14 @@
 @media (max-width: 768px) {
   .main-content {
     margin-left: 200px;
-    padding: 1rem;
+    padding: var(--spacing-md);
   }
 }
 
 @media (max-width: 480px) {
   .main-content {
     margin-left: 0;
-    padding: 1rem;
+    padding: var(--spacing-md);
     padding-top: 4rem;
   }
   
