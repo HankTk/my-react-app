@@ -15,20 +15,15 @@ const AxButtonPage = () => {
 
         <div className="page-sections">
           <section className="page-section">
-            <h2 className="page-section-title">Test Tailwind CSS</h2>
-            <p className="page-section-text">Testing if Tailwind CSS is working correctly.</p>
+            <h2 className="page-section-title">Loading States</h2>
+            <p className="page-section-text">Buttons with loading states for async operations.</p>
             <div className="page-content-container">
               <div className="page-content-group">
-                <div className="page-content-group-title">Test Examples</div>
-                <div className="space-y-4">
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    Test Tailwind Button
-                  </button>
-                  <div className="bg-red-100 text-red-800 p-4 rounded">
-                    This should be red background with red text if Tailwind is working
-                  </div>
-                  {/* Force Tailwind to generate these classes */}
-                  <div className="hidden bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 text-sm rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:bg-accent hover:text-accent-foreground text-primary underline-offset-4 hover:underline h-6 px-2 py-1 text-xs h-8 px-3 py-1.5 text-sm h-11 px-6 py-2.5 text-base h-12 px-8 py-3 text-lg h-14 px-10 py-4 text-xl h-10 w-10 h-8 w-8 h-12 w-12 w-auto w-full w-fit w-1/2 w-1/3 w-2/3 w-1/4 w-3/4 w-min w-max"></div>
+                <div className="page-content-group-title">Loading Examples</div>
+                <div className="button-page-loading-buttons">
+                  <AxButton loading>Loading Button</AxButton>
+                  <AxButton variant="outline" loading>Loading Outline</AxButton>
+                  <AxButton variant="destructive" loading>Loading Destructive</AxButton>
                 </div>
               </div>
             </div>

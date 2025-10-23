@@ -189,17 +189,16 @@ const ChartPage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Chart Types</div>
-                <div className="flex flex-wrap mb-6" style={{ gap: '2rem', justifyContent: 'flex-start' }}>
+                <div className="chart-types-grid">
                   {chartTypes.map((type) => (
                     <button
                       key={type.value}
                       onClick={() => setSelectedChartType(type.value)}
-                      className={`px-6 py-4 text-sm rounded-lg transition-colors font-medium ${
+                      className={`chart-type-button ${
                         selectedChartType === type.value
-                          ? 'bg-primary text-primary-foreground shadow-md'
-                          : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:shadow-sm'
+                          ? 'chart-type-button-active'
+                          : 'chart-type-button-inactive'
                       }`}
-                      style={{ margin: '0.5rem' }}
                     >
                       {type.label}
                     </button>
@@ -213,13 +212,13 @@ const ChartPage = () => {
             <h2 className="text-2xl font-semibold text-foreground mb-4">Interactive Chart</h2>
             <p className="text-muted-foreground mb-6">Current chart type: {chartTypes.find(t => t.value === selectedChartType)?.label}</p>
             <div className="bg-card border rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-2">{chartTypes.find(t => t.value === selectedChartType)?.label} Example</h3>
+              <p className="text-sm text-muted-foreground mb-4">This is an example of the selected chart type with sample data</p>
               <AxChart
                 type={selectedChartType}
                 data={getChartData()}
                 size="lg"
                 variant="default"
-                title={`${chartTypes.find(t => t.value === selectedChartType)?.label} Example`}
-                description="This is an example of the selected chart type with sample data"
               />
             </div>
           </section>
@@ -227,35 +226,32 @@ const ChartPage = () => {
           <section className="page-section">
             <h2 className="page-section-title">Chart Sizes</h2>
             <p className="page-section-text">Different sizes for different contexts.</p>
-            <div className="page-content-container" style={{ gap: '4rem' }}>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
-                <h3 className="text-lg font-medium text-foreground mb-4">Small Chart</h3>
+            <div className="chart-sizes-grid">
+              <div className="chart-size-item">
+                <h3 className="chart-size-title">Small Chart</h3>
                 <AxChart
                   type="line"
                   data={lineChartData}
                   size="sm"
                   variant="default"
-                  title="Small Chart"
                 />
               </div>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
-                <h3 className="text-lg font-medium text-foreground mb-4">Default Chart</h3>
+              <div className="chart-size-item">
+                <h3 className="chart-size-title">Default Chart</h3>
                 <AxChart
                   type="bar"
                   data={barChartData}
                   size="default"
                   variant="default"
-                  title="Default Chart"
                 />
               </div>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
-                <h3 className="text-lg font-medium text-foreground mb-4">Large Chart</h3>
+              <div className="chart-size-item">
+                <h3 className="chart-size-title">Large Chart</h3>
                 <AxChart
                   type="pie"
                   data={pieChartData}
                   size="lg"
                   variant="default"
-                  title="Large Chart"
                 />
               </div>
             </div>
@@ -264,35 +260,32 @@ const ChartPage = () => {
           <section className="page-section">
             <h2 className="page-section-title">Chart Variants</h2>
             <p className="page-section-text">Different visual styles for different use cases.</p>
-            <div className="page-content-container" style={{ gap: '4rem' }}>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
-                <h3 className="text-lg font-medium text-foreground mb-4">Default Variant</h3>
+            <div className="chart-variants-grid">
+              <div className="chart-variant-item">
+                <h3 className="chart-size-title">Default Variant</h3>
                 <AxChart
                   type="doughnut"
                   data={doughnutChartData}
                   size="default"
                   variant="default"
-                  title="Default Variant"
                 />
               </div>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
-                <h3 className="text-lg font-medium text-foreground mb-4">Card Variant</h3>
+              <div className="chart-variant-item">
+                <h3 className="chart-size-title">Card Variant</h3>
                 <AxChart
                   type="polarArea"
                   data={polarAreaData}
                   size="default"
                   variant="default"
-                  title="Card Variant"
                 />
               </div>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
-                <h3 className="text-lg font-medium text-foreground mb-4">Transparent Variant</h3>
+              <div className="chart-variant-item">
+                <h3 className="chart-size-title">Transparent Variant</h3>
                 <AxChart
                   type="radar"
                   data={radarChartData}
                   size="default"
                   variant="transparent"
-                  title="Transparent Variant"
                 />
               </div>
             </div>
@@ -301,45 +294,45 @@ const ChartPage = () => {
           <section className="page-section">
             <h2 className="page-section-title">Chart Examples</h2>
             <p className="page-section-text">Various chart types with different data visualizations.</p>
-            <div className="page-content-container" style={{ gap: '4rem' }}>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
+            <div className="chart-examples-grid">
+              <div className="chart-example-item">
+                <h3 className="chart-size-title">Sales vs Revenue</h3>
+                <p className="text-sm text-muted-foreground mb-4">Monthly comparison of sales and revenue data</p>
                 <AxChart
                   type="line"
                   data={lineChartData}
                   size="default"
                   variant="default"
-                  title="Sales vs Revenue"
-                  description="Monthly comparison of sales and revenue data"
                 />
               </div>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
+              <div className="chart-example-item">
+                <h3 className="chart-size-title">Quarterly Performance</h3>
+                <p className="text-sm text-muted-foreground mb-4">Q1-Q4 performance metrics</p>
                 <AxChart
                   type="bar"
                   data={barChartData}
                   size="default"
                   variant="default"
-                  title="Quarterly Performance"
-                  description="Q1-Q4 performance metrics"
                 />
               </div>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
+              <div className="chart-example-item">
+                <h3 className="chart-size-title">Traffic Sources</h3>
+                <p className="text-sm text-muted-foreground mb-4">Distribution of website traffic by device type</p>
                 <AxChart
                   type="pie"
                   data={pieChartData}
                   size="default"
                   variant="default"
-                  title="Traffic Sources"
-                  description="Distribution of website traffic by device type"
                 />
               </div>
-              <div className="page-content-group" style={{ padding: '3rem' }}>
+              <div className="chart-example-item">
+                <h3 className="chart-size-title">Correlation Analysis</h3>
+                <p className="text-sm text-muted-foreground mb-4">Scatter plot showing relationship between variables</p>
                 <AxChart
                   type="scatter"
                   data={scatterChartData}
                   size="default"
                   variant="default"
-                  title="Correlation Analysis"
-                  description="Scatter plot showing relationship between variables"
                 />
               </div>
             </div>

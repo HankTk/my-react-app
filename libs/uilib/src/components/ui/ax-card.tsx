@@ -20,15 +20,15 @@ const cardVariants = cva(
       },
       padding: {
         none: "",
-        sm: "p-4",
-        default: "p-6",
-        lg: "p-8",
+        sm: "card-padding-sm",
+        default: "card-padding-default",
+        lg: "card-padding-lg",
       },
     },
     defaultVariants: {
       size: "default",
       variant: "default",
-      padding: "none",
+      padding: "default",
     },
   }
 )
@@ -60,7 +60,7 @@ const cardHeaderVariants = cva(
       },
     },
     defaultVariants: {
-      padding: "default",
+      padding: "none",
     },
   }
 )
@@ -155,7 +155,7 @@ const cardContentVariants = cva(
       },
     },
     defaultVariants: {
-      padding: "default",
+      padding: "none",
     },
   }
 )
@@ -187,7 +187,7 @@ const cardFooterVariants = cva(
       },
     },
     defaultVariants: {
-      padding: "default",
+      padding: "none",
     },
   }
 )

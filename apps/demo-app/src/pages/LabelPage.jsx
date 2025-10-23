@@ -20,7 +20,7 @@ const AxLabelPage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Size Examples</div>
-                <div className="space-y-4" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <AxLabel size="xs">Extra Small Label (text-xs)</AxLabel>
                   <AxLabel size="sm">Small Label (text-sm)</AxLabel>
                   <AxLabel size="default">Default Label (text-sm)</AxLabel>
@@ -39,12 +39,12 @@ const AxLabelPage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Weight Examples</div>
-                <div className="space-y-4" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <AxLabel weight="light">Light Weight Label</AxLabel>
-                  <AxLabel weight="normal">Normal Weight Label</AxLabel>
-                  <AxLabel weight="medium">Medium Weight Label (default)</AxLabel>
-                  <AxLabel weight="semibold">Semibold Weight Label</AxLabel>
-                  <AxLabel weight="bold">Bold Weight Label</AxLabel>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <AxLabel size="xl" weight="light">Light Weight Label (font-thin)</AxLabel>
+                  <AxLabel size="xl" weight="normal">Normal Weight Label (font-light)</AxLabel>
+                  <AxLabel size="xl" weight="medium">Medium Weight Label (font-normal)</AxLabel>
+                  <AxLabel size="xl" weight="semibold">Semibold Weight Label (font-semibold)</AxLabel>
+                  <AxLabel size="xl" weight="bold">Bold Weight Label (font-black)</AxLabel>
                 </div>
               </div>
             </div>
@@ -56,33 +56,136 @@ const AxLabelPage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Color Examples</div>
-                <div className="space-y-4" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <AxLabel variant="default">Default Color Label</AxLabel>
-                  <AxLabel variant="muted">Muted Color Label</AxLabel>
-                  <AxLabel variant="primary">Primary Color Label</AxLabel>
-                  <AxLabel variant="secondary">Secondary Color Label</AxLabel>
-                  <AxLabel variant="destructive">Destructive Color Label</AxLabel>
-                  <AxLabel variant="success">Success Color Label</AxLabel>
-                  <AxLabel variant="warning">Warning Color Label</AxLabel>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <AxLabel size="xl" variant="default">Default Color Label</AxLabel>
+                  <AxLabel size="xl" variant="muted">Muted Color Label</AxLabel>
+                  <AxLabel size="xl" variant="primary">Primary Color Label</AxLabel>
+                  <AxLabel size="xl" variant="secondary">Secondary Color Label</AxLabel>
+                  <AxLabel size="xl" variant="destructive">Destructive Color Label</AxLabel>
+                  <AxLabel size="xl" variant="success">Success Color Label</AxLabel>
+                  <AxLabel size="xl" variant="warning">Warning Color Label</AxLabel>
                 </div>
               </div>
             </div>
           </section>
 
           <section className="page-section">
-            <h2 className="page-section-title">Combined Variants</h2>
-            <p className="page-section-text">Mix and match different variants for specific use cases.</p>
+            <h2 className="page-section-title">Direct Comparison</h2>
+            <p className="page-section-text">Same text with different variants for easy comparison.</p>
             <div className="page-content-container">
               <div className="page-content-group">
-                <div className="page-content-group-title">Form Labels</div>
-                <div className="space-y-3">
-                  <AxLabel size="sm" weight="medium" variant="default" htmlFor="email-form">Email Address</AxLabel>
-                  <input 
-                    id="email-form" 
-                    type="email" 
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                    placeholder="Enter your email"
-                  />
+                <div className="page-content-group-title">Font Weight Comparison</div>
+                <div className="comparison-grid">
+                  <div className="comparison-item">
+                    <AxLabel size="lg" weight="light">Sample Text</AxLabel>
+                    <span className="comparison-code">font-thin</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" weight="normal">Sample Text</AxLabel>
+                    <span className="comparison-code">font-light</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" weight="medium">Sample Text</AxLabel>
+                    <span className="comparison-code">font-normal</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" weight="semibold">Sample Text</AxLabel>
+                    <span className="comparison-code">font-semibold</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" weight="bold">Sample Text</AxLabel>
+                    <span className="comparison-code">font-black</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="page-content-group">
+                <div className="page-content-group-title">Color Comparison</div>
+                <div className="comparison-grid">
+                  <div className="comparison-item">
+                    <AxLabel size="lg" variant="default">Sample Text</AxLabel>
+                    <span className="comparison-code">default</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" variant="muted">Sample Text</AxLabel>
+                    <span className="comparison-code">muted</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" variant="primary">Sample Text</AxLabel>
+                    <span className="comparison-code">primary</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" variant="destructive">Sample Text</AxLabel>
+                    <span className="comparison-code">destructive</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" variant="success">Sample Text</AxLabel>
+                    <span className="comparison-code">success</span>
+                  </div>
+                  <div className="comparison-item">
+                    <AxLabel size="lg" variant="warning">Sample Text</AxLabel>
+                    <span className="comparison-code">warning</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h2 className="page-section-title">Form Examples</h2>
+            <p className="page-section-text">Proper spacing between labels and input fields.</p>
+            <div className="page-content-container">
+              <div className="page-content-group">
+                <div className="page-content-group-title">Form with Proper Spacing</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div>
+                    <AxLabel size="sm" weight="semibold" htmlFor="full-name">Full Name</AxLabel>
+                    <input 
+                      id="full-name"
+                      type="text" 
+                      style={{ 
+                        width: '100%', 
+                        padding: '0.5rem 0.75rem', 
+                        border: '1px solid #D1D5DB', 
+                        borderRadius: '0.375rem', 
+                        backgroundColor: '#FFFFFF',
+                        fontSize: '14px'
+                      }}
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                  <div>
+                    <AxLabel size="sm" weight="semibold" htmlFor="email-address">Email Address</AxLabel>
+                    <input 
+                      id="email-address"
+                      type="email" 
+                      style={{ 
+                        width: '100%', 
+                        padding: '0.5rem 0.75rem', 
+                        border: '1px solid #D1D5DB', 
+                        borderRadius: '0.375rem', 
+                        backgroundColor: '#FFFFFF',
+                        fontSize: '14px'
+                      }}
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <div>
+                    <AxLabel size="sm" weight="semibold" htmlFor="password-field">Password</AxLabel>
+                    <input 
+                      id="password-field"
+                      type="password" 
+                      style={{ 
+                        width: '100%', 
+                        padding: '0.5rem 0.75rem', 
+                        border: '1px solid #D1D5DB', 
+                        borderRadius: '0.375rem', 
+                        backgroundColor: '#FFFFFF',
+                        fontSize: '14px'
+                      }}
+                      placeholder="Enter your password"
+                    />
+                  </div>
                 </div>
               </div>
               

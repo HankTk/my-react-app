@@ -16,11 +16,11 @@ const labelVariants = cva(
         "responsive": "text-xs sm:text-sm lg:text-base",
       },
       weight: {
-        light: "font-light",
-        normal: "font-normal",
-        medium: "font-medium",
+        light: "font-thin",
+        normal: "font-light", 
+        medium: "font-normal",
         semibold: "font-semibold",
-        bold: "font-bold",
+        bold: "font-black",
       },
       variant: {
         default: "text-foreground",
@@ -28,8 +28,8 @@ const labelVariants = cva(
         primary: "text-primary",
         secondary: "text-secondary-foreground",
         destructive: "text-destructive",
-        success: "text-green-600",
-        warning: "text-yellow-600",
+        success: "text-success",
+        warning: "text-warning",
       },
     },
     defaultVariants: {
@@ -45,13 +45,106 @@ export interface AxLabelProps
     VariantProps<typeof labelVariants> {}
 
 const AxLabel = React.forwardRef<HTMLLabelElement, AxLabelProps>(
-  ({ className, size, weight, variant, ...props }, ref) => (
-    <label
-      ref={ref}
-      className={cn(labelVariants({ size, weight, variant, className }))}
-      {...props}
-    />
-  )
+  ({ className, size, weight, variant, children, ...props }, ref) => {
+    const getStyles = () => {
+      const styles: React.CSSProperties = {
+        display: 'block',
+        marginBottom: '0.5rem',
+      };
+      
+      // Size styles
+      switch (size) {
+        case 'xs':
+          styles.fontSize = '0.75rem';
+          styles.lineHeight = '1rem';
+          break;
+        case 'sm':
+          styles.fontSize = '0.875rem';
+          styles.lineHeight = '1.25rem';
+          break;
+        case 'default':
+          styles.fontSize = '0.875rem';
+          styles.lineHeight = '1.25rem';
+          break;
+        case 'lg':
+          styles.fontSize = '1rem';
+          styles.lineHeight = '1.5rem';
+          break;
+        case 'xl':
+          styles.fontSize = '1.125rem';
+          styles.lineHeight = '1.75rem';
+          break;
+        case '2xl':
+          styles.fontSize = '1.25rem';
+          styles.lineHeight = '1.75rem';
+          break;
+        default:
+          styles.fontSize = '0.875rem';
+          styles.lineHeight = '1.25rem';
+      }
+      
+      // Weight styles
+      switch (weight) {
+        case 'light':
+          styles.fontWeight = '100';
+          break;
+        case 'normal':
+          styles.fontWeight = '300';
+          break;
+        case 'medium':
+          styles.fontWeight = '400';
+          break;
+        case 'semibold':
+          styles.fontWeight = '600';
+          break;
+        case 'bold':
+          styles.fontWeight = '900';
+          break;
+        default:
+          styles.fontWeight = '400';
+      }
+      
+      // Color styles
+      switch (variant) {
+        case 'default':
+          styles.color = '#111827'; // gray-900
+          break;
+        case 'muted':
+          styles.color = '#9CA3AF'; // gray-400
+          break;
+        case 'primary':
+          styles.color = '#2563EB'; // blue-600
+          break;
+        case 'secondary':
+          styles.color = '#4B5563'; // gray-600
+          break;
+        case 'destructive':
+          styles.color = '#DC2626'; // red-600
+          break;
+        case 'success':
+          styles.color = '#16A34A'; // green-600
+          break;
+        case 'warning':
+          styles.color = '#EA580C'; // orange-600
+          break;
+        default:
+          styles.color = '#111827'; // gray-900
+      }
+      
+      return styles;
+    };
+
+    return (
+      <label
+        ref={ref}
+        className={className}
+        style={getStyles()}
+        {...props}
+      >
+        {children}
+      </label>
+    );
+  }
 )
 AxLabel.displayName = "AxLabel"
 

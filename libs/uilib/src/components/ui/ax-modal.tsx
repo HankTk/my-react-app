@@ -21,7 +21,7 @@ const modalVariants = cva(
 )
 
 const modalContentVariants = cva(
-  "bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-lg relative z-50",
+  "bg-card text-card-foreground border border-border shadow-lg relative z-50",
   {
     variants: {
       size: {

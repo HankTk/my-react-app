@@ -62,8 +62,33 @@ const AxChart = React.forwardRef<HTMLDivElement, AxChartProps>(
               position: 'top' as const,
             },
             title: {
-              display: !!title,
-              text: title,
+              display: false, // Disable Chart.js title since we show it outside
+            },
+          },
+          scales: {
+            x: {
+              grid: {
+                display: true,
+                color: 'rgba(0, 0, 0, 0.1)',
+              },
+              ticks: {
+                color: 'rgba(0, 0, 0, 0.7)',
+              },
+            },
+            y: {
+              grid: {
+                display: true,
+                color: 'rgba(0, 0, 0, 0.1)',
+                drawBorder: false,
+              },
+              ticks: {
+                color: 'rgba(0, 0, 0, 0.7)',
+                padding: 12,
+                font: {
+                  size: 12,
+                },
+              },
+              beginAtZero: true,
             },
           },
           layout: {

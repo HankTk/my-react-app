@@ -51,43 +51,43 @@ const AxCardPage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Variant Examples</div>
-                <div className="max-w-md">
-                  <AxCard variant="default" style={{ marginBottom: '1rem' }}>
-                    <AxCardHeader padding="sm">
+                <div className="card-variants-grid">
+                  <AxCard variant="default">
+                    <AxCardHeader>
                       <AxCardTitle size="sm">Default Card</AxCardTitle>
                       <AxCardDescription size="xs">Standard card style</AxCardDescription>
                     </AxCardHeader>
-                    <AxCardContent padding="sm">
+                    <AxCardContent>
                       <p className="text-sm">Default variant with standard border and shadow.</p>
                     </AxCardContent>
                   </AxCard>
 
-                  <AxCard variant="outline" style={{ marginBottom: '1rem' }}>
-                    <AxCardHeader padding="sm">
+                  <AxCard variant="outline">
+                    <AxCardHeader>
                       <AxCardTitle size="sm">Outline Card</AxCardTitle>
                       <AxCardDescription size="xs">Bold border style</AxCardDescription>
                     </AxCardHeader>
-                    <AxCardContent padding="sm">
+                    <AxCardContent>
                       <p className="text-sm">Outline variant with thicker border.</p>
                     </AxCardContent>
                   </AxCard>
 
-                  <AxCard variant="ghost" style={{ marginBottom: '1rem' }}>
-                    <AxCardHeader padding="sm">
+                  <AxCard variant="ghost">
+                    <AxCardHeader>
                       <AxCardTitle size="sm">Ghost Card</AxCardTitle>
                       <AxCardDescription size="xs">Minimal style</AxCardDescription>
                     </AxCardHeader>
-                    <AxCardContent padding="sm">
+                    <AxCardContent>
                       <p className="text-sm">Ghost variant with no border or shadow.</p>
                     </AxCardContent>
                   </AxCard>
 
-                  <AxCard variant="elevated" style={{ marginBottom: '1rem' }}>
-                    <AxCardHeader padding="sm">
+                  <AxCard variant="elevated">
+                    <AxCardHeader>
                       <AxCardTitle size="sm">Elevated Card</AxCardTitle>
                       <AxCardDescription size="xs">Prominent style</AxCardDescription>
                     </AxCardHeader>
-                    <AxCardContent padding="sm">
+                    <AxCardContent>
                       <p className="text-sm">Elevated variant with strong shadow.</p>
                     </AxCardContent>
                   </AxCard>
@@ -102,33 +102,33 @@ const AxCardPage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Size Examples</div>
-                <div className="max-w-md">
+                <div className="card-sizes-grid">
                   <AxCard size="sm">
-                    <AxCardHeader padding="sm">
+                    <AxCardHeader>
                       <AxCardTitle size="sm">Small Shadow</AxCardTitle>
                       <AxCardDescription size="xs">Subtle elevation</AxCardDescription>
                     </AxCardHeader>
-                    <AxCardContent padding="sm">
+                    <AxCardContent>
                       <p className="text-sm">Small shadow for subtle emphasis.</p>
                     </AxCardContent>
                   </AxCard>
 
                   <AxCard size="default">
-                    <AxCardHeader padding="sm">
+                    <AxCardHeader>
                       <AxCardTitle size="sm">Default Shadow</AxCardTitle>
                       <AxCardDescription size="xs">Standard elevation</AxCardDescription>
                     </AxCardHeader>
-                    <AxCardContent padding="sm">
+                    <AxCardContent>
                       <p className="text-sm">Default shadow for normal emphasis.</p>
                     </AxCardContent>
                   </AxCard>
 
                   <AxCard size="lg">
-                    <AxCardHeader padding="sm">
+                    <AxCardHeader>
                       <AxCardTitle size="sm">Large Shadow</AxCardTitle>
                       <AxCardDescription size="xs">Strong elevation</AxCardDescription>
                     </AxCardHeader>
-                    <AxCardContent padding="sm">
+                    <AxCardContent>
                       <p className="text-sm">Large shadow for strong emphasis.</p>
                     </AxCardContent>
                   </AxCard>
@@ -143,7 +143,7 @@ const AxCardPage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Padding Examples</div>
-                <div className="max-w-md">
+                <div className="card-padding-grid">
                   <AxCard padding="sm">
                     <AxCardHeader padding="sm">
                       <AxCardTitle size="sm">Small Padding</AxCardTitle>
@@ -184,9 +184,9 @@ const AxCardPage = () => {
             <div className="page-content-container">
               <div className="page-content-group">
                 <div className="page-content-group-title">Layout Examples</div>
-                <div className="max-w-md">
+                <div className="card-layouts-grid">
                   {/* Product Card */}
-                  <AxCard variant="elevated" className="overflow-hidden" style={{ marginBottom: '1rem' }}>
+                  <AxCard variant="elevated" className="overflow-hidden">
                     <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600"></div>
                     <AxCardHeader>
                       <AxCardTitle>Product Name</AxCardTitle>
@@ -211,7 +211,7 @@ const AxCardPage = () => {
                   </AxCard>
 
                   {/* User Profile Card */}
-                  <AxCard variant="outline" style={{ marginBottom: '1rem' }}>
+                  <AxCard variant="outline">
                     <AxCardHeader>
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">

@@ -6,8 +6,17 @@ const SettingsDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme, isDark } = useTheme();
 
+  console.log('SettingsDrawer rendered with theme:', theme, 'isDark:', isDark);
+
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleThemeToggle = () => {
+    console.log('Theme toggle clicked, current theme:', theme);
+    console.log('About to toggle theme...');
+    toggleTheme();
+    console.log('Theme toggle function called');
   };
 
   return (
@@ -76,7 +85,7 @@ const SettingsDrawer = () => {
                   <input
                     type="checkbox"
                     checked={isDark}
-                    onChange={toggleTheme}
+                    onChange={handleThemeToggle}
                     className="theme-toggle-input"
                   />
                   <span className="theme-toggle-slider"></span>
