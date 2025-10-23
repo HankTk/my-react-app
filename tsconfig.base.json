@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ax/uilib": ["libs/uilib/src/index.ts"]
+      "@ax/uilib": ["libs/uilib/src/index.js"],
+      "@ax/uilib/styles": ["libs/uilib/src/styles/globals.css"]
     }
   },
   "exclude": ["node_modules", "tmp"]

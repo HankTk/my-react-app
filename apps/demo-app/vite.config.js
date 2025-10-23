@@ -18,9 +18,6 @@ export default defineConfig({
 
   plugins: [react(), nxViteTsPaths()],
 
-  css: {
-    postcss: './postcss.config.js',
-  },
 
   build: {
     outDir: '../../dist/apps/demo-app',

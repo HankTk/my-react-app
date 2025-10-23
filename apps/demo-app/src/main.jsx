@@ -1,10 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import App from './App.jsx'
 
-// Import component library CSS from built library
-import '@ax/uilib/styles'
+// Import the source globals.css from the library
+import '../../../libs/uilib/src/styles/globals.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

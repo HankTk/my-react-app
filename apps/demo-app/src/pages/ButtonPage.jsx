@@ -27,6 +27,8 @@ const AxButtonPage = () => {
                   <div className="bg-red-100 text-red-800 p-4 rounded">
                     This should be red background with red text if Tailwind is working
                   </div>
+                  {/* Force Tailwind to generate these classes */}
+                  <div className="hidden bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 text-sm rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:bg-accent hover:text-accent-foreground text-primary underline-offset-4 hover:underline h-6 px-2 py-1 text-xs h-8 px-3 py-1.5 text-sm h-11 px-6 py-2.5 text-base h-12 px-8 py-3 text-lg h-14 px-10 py-4 text-xl h-10 w-10 h-8 w-8 h-12 w-12 w-auto w-full w-fit w-1/2 w-1/3 w-2/3 w-1/4 w-3/4 w-min w-max"></div>
                 </div>
               </div>
             </div>
