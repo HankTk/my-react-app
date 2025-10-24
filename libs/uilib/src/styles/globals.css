@@ -195,6 +195,60 @@
   background: none !important;
   background-color: transparent !important;
 }
+
+/* AxLabel color variants */
+.ax-label-default {
+  color: #000000 !important;
+}
+
+.ax-label-muted {
+  color: #6B7280 !important;
+}
+
+.ax-label-primary {
+  color: #3B82F6 !important;
+}
+
+.ax-label-secondary {
+  color: #6B7280 !important;
+}
+
+.ax-label-destructive {
+  color: #EF4444 !important;
+}
+
+.ax-label-success {
+  color: #10B981 !important;
+}
+
+/* Force AxLabel colors with high specificity using CSS tokens */
+span[data-variant="primary"] {
+  color: rgb(var(--color-primary-600)) !important;
+}
+
+span[data-variant="destructive"] {
+  color: rgb(var(--color-error-600)) !important;
+}
+
+span[data-variant="success"] {
+  color: rgb(var(--color-success-600)) !important;
+}
+
+span[data-variant="warning"] {
+  color: rgb(var(--color-warning-600)) !important;
+}
+
+span[data-variant="muted"] {
+  color: rgb(var(--color-neutral-500)) !important;
+}
+
+span[data-variant="secondary"] {
+  color: rgb(var(--color-neutral-500)) !important;
+}
+
+span[data-variant="default"] {
+  color: rgb(var(--color-neutral-900)) !important;
+}
   
   /* Ensure smooth transitions for all theme-dependent properties */
   * {

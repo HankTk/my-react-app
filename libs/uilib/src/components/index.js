@@ -1,6 +1,6 @@
 // shadcn/ui style components
 export { AxButton, buttonVariants } from './ui/ax-button'
-export { AxLabel, labelVariants } from './ui/ax-label'
+export { AxLabel } from './ui/ax-label'
 export { AxInput, inputVariants } from './ui/ax-input'
 export { 
   AxCard, 

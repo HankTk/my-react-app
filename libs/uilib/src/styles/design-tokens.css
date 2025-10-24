@@ -130,6 +130,14 @@
   --color-interactive-destructive-hover: var(--color-error-600);
   --color-interactive-destructive-active: var(--color-error-700);
 
+  --color-interactive-success: var(--color-success-500);
+  --color-interactive-success-hover: var(--color-success-600);
+  --color-interactive-success-active: var(--color-success-700);
+
+  --color-interactive-warning: var(--color-warning-500);
+  --color-interactive-warning-hover: var(--color-warning-600);
+  --color-interactive-warning-active: var(--color-warning-700);
+
   /* ===== SPACING TOKENS ===== */
   --spacing-0: 0;
   --spacing-px: 1px;
@@ -305,6 +313,14 @@
   --color-interactive-destructive: var(--color-error-500);
   --color-interactive-destructive-hover: var(--color-error-400);
   --color-interactive-destructive-active: var(--color-error-600);
+
+  --color-interactive-success: var(--color-success-500);
+  --color-interactive-success-hover: var(--color-success-400);
+  --color-interactive-success-active: var(--color-success-600);
+
+  --color-interactive-warning: var(--color-warning-500);
+  --color-interactive-warning-hover: var(--color-warning-400);
+  --color-interactive-warning-active: var(--color-warning-600);
 
   /* Shadow adjustments for dark mode */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);

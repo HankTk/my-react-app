@@ -23,7 +23,7 @@ const AxLabelPage = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <AxLabel size="xs">Extra Small Label (text-xs)</AxLabel>
                   <AxLabel size="sm">Small Label (text-sm)</AxLabel>
-                  <AxLabel size="default">Default Label (text-sm)</AxLabel>
+                  <AxLabel size="md">Default Label (text-sm)</AxLabel>
                   <AxLabel size="lg">Large Label (text-base)</AxLabel>
                   <AxLabel size="xl">Extra Large Label (text-lg)</AxLabel>
                   <AxLabel size="2xl">2X Large Label (text-xl)</AxLabel>
@@ -308,8 +308,8 @@ const AxLabelPage = () => {
                   <tbody>
                     <tr>
                       <td className="page-prop-name">size</td>
-                      <td>'xs' | 'sm' | 'default' | 'lg' | 'xl' | '2xl' | 'responsive'</td>
-                      <td>'default'</td>
+                      <td>'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'responsive'</td>
+                      <td>'md'</td>
                       <td>Size of the label text</td>
                     </tr>
                     <tr>
