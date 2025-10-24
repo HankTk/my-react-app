@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AxDataTable } from '@ax/uilib';
+import { AxDataTable, AxButton } from '@ax/uilib';
 import './PageStyles.css';
 
 const TablePage = () => {
@@ -232,18 +232,15 @@ const TablePage = () => {
                     <label className="block text-sm font-medium text-foreground mb-2">Variant</label>
                     <div className="flex gap-3" style={{ gap: '0.75rem' }}>
                       {variants.map((variant) => (
-                        <button
+                        <AxButton
                           key={variant.value}
                           onClick={() => setSelectedVariant(variant.value)}
-                          className={`px-4 py-2 text-sm rounded-md transition-colors font-medium ${
-                            selectedVariant === variant.value
-                              ? 'bg-primary text-primary-foreground'
-                              : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                          }`}
-                          style={{ margin: '0.25rem' }}
+                          variant={selectedVariant === variant.value ? "default" : "outline"}
+                          size="sm"
+                          className="variant-button"
                         >
                           {variant.label}
-                        </button>
+                        </AxButton>
                       ))}
                     </div>
                   </div>
@@ -251,31 +248,29 @@ const TablePage = () => {
                     <label className="block text-sm font-medium text-foreground mb-2">Size</label>
                     <div className="flex gap-3" style={{ gap: '0.75rem' }}>
                       {sizes.map((size) => (
-                        <button
+                        <AxButton
                           key={size.value}
                           onClick={() => setSelectedSize(size.value)}
-                          className={`px-4 py-2 text-sm rounded-md transition-colors font-medium ${
-                            selectedSize === size.value
-                              ? 'bg-primary text-primary-foreground'
-                              : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                          }`}
-                          style={{ margin: '0.25rem' }}
+                          variant={selectedSize === size.value ? "default" : "outline"}
+                          size="sm"
+                          className="size-button"
                         >
                           {size.label}
-                        </button>
+                        </AxButton>
                       ))}
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">Actions</label>
                     <div className="flex gap-3" style={{ gap: '0.75rem' }}>
-                      <button
+                      <AxButton
                         onClick={simulateLoading}
-                        className="px-4 py-2 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors font-medium"
-                        style={{ margin: '0.25rem' }}
+                        variant="secondary"
+                        size="sm"
+                        className="action-button"
                       >
                         {loading ? 'Loading...' : 'Simulate Loading'}
-                      </button>
+                      </AxButton>
                     </div>
                   </div>
                 </div>
@@ -352,23 +347,27 @@ const TablePage = () => {
                       ))}
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <button
+                      <AxButton
                         onClick={() => alert(`Bulk edit ${selectedRows.length} employees`)}
-                        className="px-3 py-1 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90"
+                        variant="default"
+                        size="sm"
+                        className="bulk-edit-button"
                       >
                         Bulk Edit
-                      </button>
-                      <button
+                      </AxButton>
+                      <AxButton
                         onClick={() => {
                           if (confirm(`Delete ${selectedRows.length} selected employees?`)) {
                             alert(`Deleted ${selectedRows.length} employees`);
                             setSelectedRows([]);
                           }
                         }}
-                        className="px-3 py-1 bg-destructive text-destructive-foreground rounded-md text-sm hover:bg-destructive/90"
+                        variant="destructive"
+                        size="sm"
+                        className="bulk-delete-button"
                       >
                         Bulk Delete
-                      </button>
+                      </AxButton>
                     </div>
                   </div>
                 ) : (
@@ -567,7 +566,7 @@ const TablePage = () => {
                     <tr>
                       <td className="page-prop-name">emptyMessage</td>
                       <td>string</td>
-                      <td>'データがありません'</td>
+                      <td>'No data available'</td>
                       <td>Message when no data</td>
                     </tr>
                     <tr>
@@ -609,7 +608,7 @@ const TablePage = () => {
                     <tr>
                       <td className="page-prop-name">searchPlaceholder</td>
                       <td>string</td>
-                      <td>'検索...'</td>
+                      <td>'Search...'</td>
                       <td>Search input placeholder</td>
                     </tr>
                     <tr>

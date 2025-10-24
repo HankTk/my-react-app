@@ -136,10 +136,10 @@ const AxButtonPage = () => {
               <div className="button-page-analysis-group">
                 <h3 className="button-page-analysis-group-title">Spacing Principles</h3>
                 <div className="button-page-principles">
-                  <p className="button-page-principle-item"><strong>Vertical Spacing (py):</strong> Font sizeに比例して調整（text-xs → py-1, text-sm → py-2, text-lg → py-3）</p>
-                  <p className="button-page-principle-item"><strong>Horizontal Spacing (px):</strong> ボタンサイズに応じて段階的に増加（2px → 3px → 4px → 6px → 8px → 10px）</p>
-                  <p className="button-page-principle-item"><strong>Height (h):</strong> フォントサイズとパディングの合計で視覚的バランスを保持</p>
-                  <p className="button-page-principle-item"><strong>Typography Scale:</strong> Tailwindのデフォルトスケール（xs: 12px, sm: 14px, base: 16px, lg: 18px, xl: 20px）</p>
+                  <p className="button-page-principle-item"><strong>Vertical Spacing (py):</strong> Adjusted proportionally to font size (text-xs → py-1, text-sm → py-2, text-lg → py-3)</p>
+                  <p className="button-page-principle-item"><strong>Horizontal Spacing (px):</strong> Gradually increases according to button size (2px → 3px → 4px → 6px → 8px → 10px)</p>
+                  <p className="button-page-principle-item"><strong>Height (h):</strong> Maintains visual balance with the sum of font size and padding</p>
+                  <p className="button-page-principle-item"><strong>Typography Scale:</strong> Tailwind's default scale (xs: 12px, sm: 14px, base: 16px, lg: 18px, xl: 20px)</p>
                 </div>
               </div>
             </div>

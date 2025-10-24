@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AxButton, AxLabel, AxCard, AxCardContent, AxCardHeader, AxCardTitle, AxDataTable } from '@ax/uilib';
+import SimpleThemeTest from '../components/SimpleThemeTest';
+import BasicThemeTest from '../components/BasicThemeTest';
 import './PageStyles.css';
 
 const HomePage = () => {
@@ -218,6 +220,16 @@ function App() {
                 <p className="homepage-card-text">Optimized with dynamic imports and efficient re-rendering</p>
               </div>
             </div>
+          </section>
+
+          <section className="homepage-section">
+            <h2 className="homepage-section-title">Basic Theme Test</h2>
+            <BasicThemeTest />
+          </section>
+
+          <section className="homepage-section">
+            <h2 className="homepage-section-title">Advanced Theme Test</h2>
+            <SimpleThemeTest />
           </section>
         </div>
       </div>

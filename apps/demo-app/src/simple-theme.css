@@ -1,0 +1,1412 @@
+/* Simple Dark Mode Implementation */
+:root {
+  /* Light theme (default) */
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --border-color: #e5e7eb;
+  --primary-color: #3b82f6;
+  --primary-text: #ffffff;
+  
+  /* Additional variables for PageStyles.css compatibility */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 142.1 76.2% 36.3%;
+  --success-foreground: 0 0% 100%;
+  --warning: 32.5 94.6% 43.7%;
+  --warning-foreground: 0 0% 100%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
+  
+  /* Custom spacing variables */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* Custom typography variables */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  
+  /* Custom shadow variables */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  /* Dark theme */
+  --bg-color: #1f2937;
+  --text-color: #f9fafb;
+  --border-color: #374151;
+  --primary-color: #60a5fa;
+  --primary-text: #1f2937;
+  
+  /* Additional variables for PageStyles.css compatibility */
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --success: 142.1 70.6% 45.3%;
+  --success-foreground: 210 40% 98%;
+  --warning: 32.5 81% 50%;
+  --warning-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 94.1%;
+  
+  /* Custom shadow variables (adjusted for dark theme) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* Force theme application */
+html, body, #root {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure all elements inherit theme colors */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Force theme application to text elements only */
+.page-title,
+.page-subtitle,
+.page-section-title,
+.page-section-text,
+.page-content-group-title,
+.homepage-title,
+.homepage-subtitle,
+.homepage-section-title,
+.homepage-card-title,
+.homepage-card-text {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Force button text colors to match theme with proper contrast */
+/* Primary buttons - use contrasting text */
+button[class*="bg-primary"],
+button[class*="text-primary-foreground"],
+.inline-flex.items-center.justify-center[class*="bg-primary"] {
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+/* Secondary buttons - use contrasting text */
+button[class*="bg-secondary"],
+button[class*="text-secondary-foreground"] {
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+/* Destructive buttons - use contrasting text */
+button[class*="bg-destructive"],
+button[class*="text-destructive-foreground"] {
+  color: hsl(var(--destructive-foreground)) !important;
+}
+
+/* Outline/Ghost buttons - use foreground text */
+button[class*="border"],
+button[class*="outline"],
+button[class*="ghost"],
+button[class*="bg-background"],
+button[class*="bg-accent"] {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Link buttons - use primary color */
+button[class*="link"],
+button[class*="text-primary"] {
+  color: hsl(var(--primary)) !important;
+}
+
+/* Default button styling - ensure visibility */
+button:not([class*="bg-"]):not([class*="text-"]) {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+/* Theme indicator - hidden */
+#theme-indicator {
+  display: none !important;
+}
+
+/* Test elements */
+.theme-test-box {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 2px solid var(--border-color) !important;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+.theme-test-button {
+  background-color: var(--primary-color) !important;
+  color: var(--primary-text) !important;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.theme-test-button:hover {
+  opacity: 0.9;
+}
+
+/* Force dark mode styles */
+.dark {
+  color-scheme: dark;
+}
+
+.light {
+  color-scheme: light;
+}
+
+/* Additional force rules for theme application */
+.dark * {
+  color: hsl(var(--foreground)) !important;
+}
+
+.light * {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Override button text colors specifically */
+.dark button *,
+.light button * {
+  color: inherit !important;
+}
+
+/* Ensure button text is always visible */
+button {
+  text-shadow: none !important;
+}
+
+/* Force visibility for specific button types */
+button[class*="bg-primary"] {
+  color: white !important;
+}
+
+/* Ultimate primary button text fix */
+button[class*="bg-primary"],
+button[class*="primary"],
+.inline-flex.items-center.justify-center[class*="bg-primary"],
+.inline-flex.items-center.justify-center[class*="primary"],
+button[class*="bg-primary"] *,
+button[class*="primary"] *,
+.inline-flex.items-center.justify-center[class*="bg-primary"] *,
+.inline-flex.items-center.justify-center[class*="primary"] * {
+  color: white !important;
+  text-shadow: none !important;
+}
+
+button[class*="bg-destructive"],
+button[class*="destructive"],
+button[class*="danger"] {
+  color: white !important;
+  background-color: hsl(var(--destructive)) !important;
+}
+
+button[class*="bg-success"] {
+  color: white !important;
+}
+
+button[class*="bg-warning"] {
+  color: white !important;
+}
+
+/* Additional destructive button rules for better visibility */
+button[class*="destructive"]:not([class*="bg-"]) {
+  background-color: hsl(var(--destructive)) !important;
+  color: white !important;
+  border: none !important;
+}
+
+/* Ensure destructive buttons have proper contrast */
+button[class*="destructive"] *,
+button[class*="danger"] * {
+  color: white !important;
+}
+
+/* Specific rules for AxButton destructive variant */
+.inline-flex.items-center.justify-center[class*="destructive"],
+.inline-flex.items-center.justify-center[class*="bg-destructive"] {
+  background-color: hsl(var(--destructive)) !important;
+  color: white !important;
+}
+
+/* Force destructive button text visibility */
+button[class*="destructive"],
+button[class*="danger"],
+button[class*="bg-destructive"] {
+  color: white !important;
+  text-shadow: none !important;
+}
+
+/* DataTable page specific button rules */
+.datatable-action-button,
+.datatable-pagination-button,
+.datatable-container button,
+.datatable-header button,
+.datatable-pagination button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* DataTable action buttons */
+.datatable-action-button:hover,
+.datatable-pagination-button:hover {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* DataTable pagination buttons */
+.datatable-pagination-button:disabled {
+  opacity: 0.5 !important;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+/* DataTable search input */
+.datatable-search input {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Additional DataTable button rules for better coverage */
+.datatable-container .ax-button,
+.datatable-container button[class*="ax-button"],
+.datatable-header .ax-button,
+.datatable-header button[class*="ax-button"],
+.datatable-pagination .ax-button,
+.datatable-pagination button[class*="ax-button"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* DataTable table elements */
+.datatable-table th,
+.datatable-table td {
+  color: hsl(var(--foreground)) !important;
+}
+
+.datatable-table th {
+  background-color: hsl(var(--muted)) !important;
+}
+
+.datatable-table tr:hover {
+  background-color: hsl(var(--muted)) !important;
+}
+
+.datatable-table tr:nth-child(even) {
+  background-color: hsl(var(--muted)) !important;
+}
+
+/* Force DataTable button visibility */
+.datatable-container button,
+.datatable-header button,
+.datatable-pagination button,
+.datatable-container .ax-button,
+.datatable-header .ax-button,
+.datatable-pagination .ax-button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  text-shadow: none !important;
+}
+
+/* Override for primary buttons in DataTable */
+.datatable-container button[class*="primary"],
+.datatable-header button[class*="primary"],
+.datatable-pagination button[class*="primary"],
+.datatable-container .ax-button[class*="primary"],
+.datatable-header .ax-button[class*="primary"],
+.datatable-pagination .ax-button[class*="primary"] {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+/* Additional primary button rules for DataTable */
+.datatable-container button[class*="bg-primary"],
+.datatable-header button[class*="bg-primary"],
+.datatable-pagination button[class*="bg-primary"] {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+/* Force primary button text visibility in DataTable */
+.datatable-container button[class*="primary"] *,
+.datatable-header button[class*="primary"] *,
+.datatable-pagination button[class*="primary"] *,
+.datatable-container .ax-button[class*="primary"] *,
+.datatable-header .ax-button[class*="primary"] *,
+.datatable-pagination .ax-button[class*="primary"] * {
+  color: white !important;
+}
+
+/* Ultra-strong primary button rules for Controls section */
+button[class*="bg-primary"],
+button[class*="primary"],
+.inline-flex.items-center.justify-center[class*="bg-primary"],
+.inline-flex.items-center.justify-center[class*="primary"] {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+/* Force all primary button text to be white */
+button[class*="bg-primary"] *,
+button[class*="primary"] *,
+.inline-flex.items-center.justify-center[class*="bg-primary"] *,
+.inline-flex.items-center.justify-center[class*="primary"] * {
+  color: white !important;
+}
+
+/* Specific rules for Controls section buttons */
+.controls-section button[class*="bg-primary"],
+.controls-section button[class*="primary"],
+.controls-section .ax-button[class*="primary"] {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.controls-section button[class*="bg-primary"] *,
+.controls-section button[class*="primary"] *,
+.controls-section .ax-button[class*="primary"] * {
+  color: white !important;
+}
+
+/* DataTable button hover states */
+.datatable-container button:hover,
+.datatable-header button:hover,
+.datatable-pagination button:hover {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* DataTable primary button specific rules */
+.datatable-container button[class*="bg-primary"],
+.datatable-container button[class*="primary"],
+.datatable-container .ax-button[class*="primary"],
+.datatable-header button[class*="bg-primary"],
+.datatable-header button[class*="primary"],
+.datatable-header .ax-button[class*="primary"],
+.datatable-pagination button[class*="bg-primary"],
+.datatable-pagination button[class*="primary"],
+.datatable-pagination .ax-button[class*="primary"] {
+  background-color: hsl(var(--primary)) !important;
+  color: white !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+/* DataTable primary button hover states */
+.datatable-container button[class*="bg-primary"]:hover,
+.datatable-container button[class*="primary"]:hover,
+.datatable-container .ax-button[class*="primary"]:hover,
+.datatable-header button[class*="bg-primary"]:hover,
+.datatable-header button[class*="primary"]:hover,
+.datatable-header .ax-button[class*="primary"]:hover,
+.datatable-pagination button[class*="bg-primary"]:hover,
+.datatable-pagination button[class*="primary"]:hover,
+.datatable-pagination .ax-button[class*="primary"]:hover {
+  background-color: hsl(var(--primary)) !important;
+  color: white !important;
+  opacity: 0.9 !important;
+}
+
+/* Force theme application to text elements only */
+.dark .page-title,
+.dark .page-subtitle,
+.dark .page-section-title,
+.dark .page-section-text,
+.dark .page-content-group-title,
+.dark .homepage-title,
+.dark .homepage-subtitle,
+.dark .homepage-section-title,
+.dark .homepage-card-title,
+.dark .homepage-card-text {
+  color: hsl(var(--foreground)) !important;
+}
+
+.light .page-title,
+.light .page-subtitle,
+.light .page-section-title,
+.light .page-section-text,
+.light .page-content-group-title,
+.light .homepage-title,
+.light .homepage-subtitle,
+.light .homepage-section-title,
+.light .homepage-card-title,
+.light .homepage-card-text {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Force button text colors to match theme - Dark mode with proper contrast */
+.dark button[class*="bg-primary"],
+.dark button[class*="text-primary-foreground"],
+.dark .inline-flex.items-center.justify-center[class*="bg-primary"] {
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.dark button[class*="bg-secondary"],
+.dark button[class*="text-secondary-foreground"] {
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+.dark button[class*="bg-destructive"],
+.dark button[class*="destructive"],
+.dark button[class*="danger"],
+.dark button[class*="text-destructive-foreground"] {
+  color: white !important;
+  background-color: hsl(var(--destructive)) !important;
+}
+
+.dark button[class*="border"],
+.dark button[class*="outline"],
+.dark button[class*="ghost"],
+.dark button[class*="bg-background"],
+.dark button[class*="bg-accent"] {
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark button[class*="link"],
+.dark button[class*="text-primary"] {
+  color: hsl(var(--primary)) !important;
+}
+
+.dark button:not([class*="bg-"]):not([class*="text-"]) {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+/* Force button text colors to match theme - Light mode with proper contrast */
+.light button[class*="bg-primary"],
+.light button[class*="text-primary-foreground"],
+.light .inline-flex.items-center.justify-center[class*="bg-primary"] {
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.light button[class*="bg-secondary"],
+.light button[class*="text-secondary-foreground"] {
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+.light button[class*="bg-destructive"],
+.light button[class*="destructive"],
+.light button[class*="danger"],
+.light button[class*="text-destructive-foreground"] {
+  color: white !important;
+  background-color: hsl(var(--destructive)) !important;
+}
+
+.light button[class*="border"],
+.light button[class*="outline"],
+.light button[class*="ghost"],
+.light button[class*="bg-background"],
+.light button[class*="bg-accent"] {
+  color: hsl(var(--foreground)) !important;
+}
+
+.light button[class*="link"],
+.light button[class*="text-primary"] {
+  color: hsl(var(--primary)) !important;
+}
+
+.light button:not([class*="bg-"]):not([class*="text-"]) {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+/* DataTable page specific button rules - Dark mode */
+.dark .datatable-action-button,
+.dark .datatable-pagination-button,
+.dark .datatable-container button,
+.dark .datatable-header button,
+.dark .datatable-pagination button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .datatable-action-button:hover,
+.dark .datatable-pagination-button:hover {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .datatable-pagination-button:disabled {
+  opacity: 0.5 !important;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.dark .datatable-search input {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* DataTable page specific button rules - Light mode */
+.light .datatable-action-button,
+.light .datatable-pagination-button,
+.light .datatable-container button,
+.light .datatable-header button,
+.light .datatable-pagination button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.light .datatable-action-button:hover,
+.light .datatable-pagination-button:hover {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.light .datatable-pagination-button:disabled {
+  opacity: 0.5 !important;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.light .datatable-search input {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* DataTable primary button rules - Dark mode */
+.dark .datatable-container button[class*="bg-primary"],
+.dark .datatable-container button[class*="primary"],
+.dark .datatable-container .ax-button[class*="primary"],
+.dark .datatable-header button[class*="bg-primary"],
+.dark .datatable-header button[class*="primary"],
+.dark .datatable-header .ax-button[class*="primary"],
+.dark .datatable-pagination button[class*="bg-primary"],
+.dark .datatable-pagination button[class*="primary"],
+.dark .datatable-pagination .ax-button[class*="primary"] {
+  background-color: hsl(var(--primary)) !important;
+  color: white !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.dark .datatable-container button[class*="bg-primary"]:hover,
+.dark .datatable-container button[class*="primary"]:hover,
+.dark .datatable-container .ax-button[class*="primary"]:hover,
+.dark .datatable-header button[class*="bg-primary"]:hover,
+.dark .datatable-header button[class*="primary"]:hover,
+.dark .datatable-header .ax-button[class*="primary"]:hover,
+.dark .datatable-pagination button[class*="bg-primary"]:hover,
+.dark .datatable-pagination button[class*="primary"]:hover,
+.dark .datatable-pagination .ax-button[class*="primary"]:hover {
+  background-color: hsl(var(--primary)) !important;
+  color: white !important;
+  opacity: 0.9 !important;
+}
+
+/* DataTable primary button rules - Light mode */
+.light .datatable-container button[class*="bg-primary"],
+.light .datatable-container button[class*="primary"],
+.light .datatable-container .ax-button[class*="primary"],
+.light .datatable-header button[class*="bg-primary"],
+.light .datatable-header button[class*="primary"],
+.light .datatable-header .ax-button[class*="primary"],
+.light .datatable-pagination button[class*="bg-primary"],
+.light .datatable-pagination button[class*="primary"],
+.light .datatable-pagination .ax-button[class*="primary"] {
+  background-color: hsl(var(--primary)) !important;
+  color: white !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.light .datatable-container button[class*="bg-primary"]:hover,
+.light .datatable-container button[class*="primary"]:hover,
+.light .datatable-container .ax-button[class*="primary"]:hover,
+.light .datatable-header button[class*="bg-primary"]:hover,
+.light .datatable-header button[class*="primary"]:hover,
+.light .datatable-header .ax-button[class*="primary"]:hover,
+.light .datatable-pagination button[class*="bg-primary"]:hover,
+.light .datatable-pagination button[class*="primary"]:hover,
+.light .datatable-pagination .ax-button[class*="primary"]:hover {
+  background-color: hsl(var(--primary)) !important;
+  color: white !important;
+  opacity: 0.9 !important;
+}
+
+/* Ultra-strong primary button rules - Dark mode */
+.dark button[class*="bg-primary"],
+.dark button[class*="primary"],
+.dark .inline-flex.items-center.justify-center[class*="bg-primary"],
+.dark .inline-flex.items-center.justify-center[class*="primary"] {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.dark button[class*="bg-primary"] *,
+.dark button[class*="primary"] *,
+.dark .inline-flex.items-center.justify-center[class*="bg-primary"] *,
+.dark .inline-flex.items-center.justify-center[class*="primary"] * {
+  color: white !important;
+}
+
+.dark .controls-section button[class*="bg-primary"],
+.dark .controls-section button[class*="primary"],
+.dark .controls-section .ax-button[class*="primary"] {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.dark .controls-section button[class*="bg-primary"] *,
+.dark .controls-section button[class*="primary"] *,
+.dark .controls-section .ax-button[class*="primary"] * {
+  color: white !important;
+}
+
+/* Ultra-strong primary button rules - Light mode */
+.light button[class*="bg-primary"],
+.light button[class*="primary"],
+.light .inline-flex.items-center.justify-center[class*="bg-primary"],
+.light .inline-flex.items-center.justify-center[class*="primary"] {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.light button[class*="bg-primary"] *,
+.light button[class*="primary"] *,
+.light .inline-flex.items-center.justify-center[class*="bg-primary"] *,
+.light .inline-flex.items-center.justify-center[class*="primary"] * {
+  color: white !important;
+}
+
+.light .controls-section button[class*="bg-primary"],
+.light .controls-section button[class*="primary"],
+.light .controls-section .ax-button[class*="primary"] {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.light .controls-section button[class*="bg-primary"] *,
+.light .controls-section button[class*="primary"] *,
+.light .controls-section .ax-button[class*="primary"] * {
+  color: white !important;
+}
+
+/* Chart Types section button styling */
+.chart-types-section button,
+.chart-types-section .ax-button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Chart Types section button hover state */
+.chart-types-section button:hover,
+.chart-types-section .ax-button:hover {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Chart Types section button selected state */
+.chart-types-section button.selected,
+.chart-types-section button[data-selected="true"],
+.chart-types-section .ax-button.selected,
+.chart-types-section .ax-button[data-selected="true"] {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  border-color: hsl(var(--accent)) !important;
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.1) !important;
+}
+
+/* Chart Types section button selected hover state */
+.chart-types-section button.selected:hover,
+.chart-types-section button[data-selected="true"]:hover,
+.chart-types-section .ax-button.selected:hover,
+.chart-types-section .ax-button[data-selected="true"]:hover {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  opacity: 0.9 !important;
+}
+
+/* Chart Types section button styling - Dark mode */
+.dark .chart-types-section button,
+.dark .chart-types-section .ax-button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.dark .chart-types-section button:hover,
+.dark .chart-types-section .ax-button:hover {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .chart-types-section button.selected,
+.dark .chart-types-section button[data-selected="true"],
+.dark .chart-types-section .ax-button.selected,
+.dark .chart-types-section .ax-button[data-selected="true"] {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  border-color: hsl(var(--accent)) !important;
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.1) !important;
+}
+
+.dark .chart-types-section button.selected:hover,
+.dark .chart-types-section button[data-selected="true"]:hover,
+.dark .chart-types-section .ax-button.selected:hover,
+.dark .chart-types-section .ax-button[data-selected="true"]:hover {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  opacity: 0.9 !important;
+}
+
+/* Chart Types section button styling - Light mode */
+.light .chart-types-section button,
+.light .chart-types-section .ax-button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.light .chart-types-section button:hover,
+.light .chart-types-section .ax-button:hover {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.light .chart-types-section button.selected,
+.light .chart-types-section button[data-selected="true"],
+.light .chart-types-section .ax-button.selected,
+.light .chart-types-section .ax-button[data-selected="true"] {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  border-color: hsl(var(--accent)) !important;
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.1) !important;
+}
+
+.light .chart-types-section button.selected:hover,
+.light .chart-types-section button[data-selected="true"]:hover,
+.light .chart-types-section .ax-button.selected:hover,
+.light .chart-types-section .ax-button[data-selected="true"]:hover {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  opacity: 0.9 !important;
+}
+
+/* Ultimate Chart Types button override - highest specificity */
+.chart-types-section button,
+.chart-types-section .ax-button,
+.chart-types-section button[class*="bg-primary"],
+.chart-types-section .ax-button[class*="bg-primary"],
+.chart-types-section button[class*="primary"],
+.chart-types-section .ax-button[class*="primary"],
+.chart-types-section button[class*="bg-"],
+.chart-types-section .ax-button[class*="bg-"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* Ultimate Chart Types selected state override */
+.chart-types-section button.selected,
+.chart-types-section button[data-selected="true"],
+.chart-types-section .ax-button.selected,
+.chart-types-section .ax-button[data-selected="true"],
+.chart-types-section button.selected[class*="bg-primary"],
+.chart-types-section button[data-selected="true"][class*="bg-primary"],
+.chart-types-section .ax-button.selected[class*="bg-primary"],
+.chart-types-section .ax-button[data-selected="true"][class*="bg-primary"] {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--accent)) !important;
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.1) !important;
+}
+
+/* Additional Chart Types button rules for better coverage */
+.chart-types-section button:not(.selected):not([data-selected="true"]),
+.chart-types-section .ax-button:not(.selected):not([data-selected="true"]) {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Force Chart Types button text visibility */
+.chart-types-section button *,
+.chart-types-section .ax-button * {
+  color: inherit !important;
+}
+
+/* NUCLEAR OPTION - Force Chart Types button colors with maximum specificity */
+html body .chart-types-section button,
+html body .chart-types-section .ax-button,
+html body .chart-types-section button[class*="bg-primary"],
+html body .chart-types-section .ax-button[class*="bg-primary"],
+html body .chart-types-section button[class*="primary"],
+html body .chart-types-section .ax-button[class*="primary"],
+html body .chart-types-section button[class*="bg-"],
+html body .chart-types-section .ax-button[class*="bg-"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* NUCLEAR OPTION - Force Chart Types selected state */
+html body .chart-types-section button.selected,
+html body .chart-types-section button[data-selected="true"],
+html body .chart-types-section .ax-button.selected,
+html body .chart-types-section .ax-button[data-selected="true"],
+html body .chart-types-section button.selected[class*="bg-primary"],
+html body .chart-types-section button[data-selected="true"][class*="bg-primary"],
+html body .chart-types-section .ax-button.selected[class*="bg-primary"],
+html body .chart-types-section .ax-button[data-selected="true"][class*="bg-primary"] {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--accent)) !important;
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.1) !important;
+}
+
+/* Force all buttons in chart types section to use theme colors */
+.chart-types-section * button,
+.chart-types-section * .ax-button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.chart-types-section * button.selected,
+.chart-types-section * button[data-selected="true"],
+.chart-types-section * .ax-button.selected,
+.chart-types-section * .ax-button[data-selected="true"] {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--accent)) !important;
+}
+
+/* FINAL NUCLEAR OPTION - Override everything */
+button[class*="bg-primary"],
+button[class*="primary"],
+.inline-flex.items-center.justify-center[class*="bg-primary"],
+.inline-flex.items-center.justify-center[class*="primary"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Override primary buttons in any section */
+button[class*="bg-primary"]:not(.chart-types-section),
+button[class*="primary"]:not(.chart-types-section),
+.inline-flex.items-center.justify-center[class*="bg-primary"]:not(.chart-types-section),
+.inline-flex.items-center.justify-center[class*="primary"]:not(.chart-types-section) {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+/* Chart Types section gets special treatment */
+.chart-types-section button[class*="bg-primary"],
+.chart-types-section button[class*="primary"],
+.chart-types-section .inline-flex.items-center.justify-center[class*="bg-primary"],
+.chart-types-section .inline-flex.items-center.justify-center[class*="primary"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.chart-types-section button.selected[class*="bg-primary"],
+.chart-types-section button[data-selected="true"][class*="bg-primary"],
+.chart-types-section button.selected[class*="primary"],
+.chart-types-section button[data-selected="true"][class*="primary"] {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--accent)) !important;
+}
+
+/* EXTREME OVERRIDE - Target all possible button combinations */
+button,
+.ax-button,
+.inline-flex.items-center.justify-center {
+  /* Default state */
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Override primary buttons everywhere except chart types */
+button[class*="bg-primary"]:not(.chart-types-section),
+button[class*="primary"]:not(.chart-types-section),
+.ax-button[class*="bg-primary"]:not(.chart-types-section),
+.ax-button[class*="primary"]:not(.chart-types-section),
+.inline-flex.items-center.justify-center[class*="bg-primary"]:not(.chart-types-section),
+.inline-flex.items-center.justify-center[class*="primary"]:not(.chart-types-section) {
+  color: white !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+/* CSS Variables page specific button rules */
+.css-variables-demo .spacing-box {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+}
+
+.css-variables-demo .spacing-box:hover {
+  background-color: hsl(var(--primary) / 0.9) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+/* Ensure spacing demo buttons maintain their custom sizing */
+.css-variables-demo .spacing-demo .spacing-box {
+  min-width: 120px !important;
+  width: 120px !important;
+  height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+}
+
+/* Force gap for spacing demo */
+.css-variables-demo .spacing-demo {
+  gap: 1rem !important;
+}
+
+/* Shadow demo buttons */
+.css-variables-demo .shadow-box {
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  width: 150px !important;
+  height: 60px !important;
+  margin: 0 !important;
+}
+
+/* Force gap for shadow demo */
+.css-variables-demo .shadow-demo {
+  gap: 1rem !important;
+}
+
+/* Color demo buttons */
+.css-variables-demo .color-box {
+  width: 120px !important;
+  height: 50px !important;
+  margin: 0 !important;
+}
+
+/* Force gap for color demo */
+.css-variables-demo .color-demo {
+  gap: 1rem !important;
+}
+
+/* Color demo buttons */
+.css-variables-demo .color-box.primary {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.css-variables-demo .color-box.secondary {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+.css-variables-demo .color-box.accent {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+}
+
+.css-variables-demo .color-box.muted {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.css-variables-demo .color-box.destructive {
+  background-color: hsl(var(--destructive)) !important;
+  color: hsl(var(--destructive-foreground)) !important;
+}
+
+/* Custom demo button */
+.css-variables-demo .custom-box {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary))) !important;
+  color: white !important;
+  border: none !important;
+}
+
+/* DarkModeTest Color Test section buttons */
+.dark-mode-test .page-content-group .flex.flex-col .ax-button {
+  min-height: 80px !important;
+  height: 80px !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 1rem !important;
+  margin: 0 !important;
+}
+
+/* Force gap for Color Test section */
+.dark-mode-test .page-content-group .flex.flex-col {
+  gap: 1rem !important;
+}
+
+/* Ensure proper text colors for Color Test buttons */
+.dark-mode-test .ax-button.bg-muted {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+/* Chart types section buttons get theme colors */
+.chart-types-section button,
+.chart-types-section .ax-button,
+.chart-types-section .inline-flex.items-center.justify-center {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Chart types selected state */
+.chart-types-section button.selected,
+.chart-types-section button[data-selected="true"],
+.chart-types-section .ax-button.selected,
+.chart-types-section .ax-button[data-selected="true"] {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--accent)) !important;
+}
+
+/* HARDCODED Chart Type Button Styling - Force Colors */
+.chart-type-button,
+.chart-type-button-inactive {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  border: 1px solid #3b82f6 !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* HARDCODED Chart Type Button Active/Selected State */
+.chart-type-button-active,
+.chart-type-button.selected,
+.chart-type-button[data-selected="true"] {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* HARDCODED Chart Type Button Hover State */
+.chart-type-button:hover,
+.chart-type-button-inactive:hover {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+}
+
+.chart-type-button-active:hover {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+  border-color: #059669 !important;
+}
+
+/* ULTIMATE OVERRIDE - Target all possible chart button elements */
+html body .chart-type-button,
+html body .chart-type-button-inactive,
+html body .chart-type-button-active,
+html body .page-content-group .chart-type-button,
+html body .page-content-group .chart-type-button-inactive,
+html body .page-content-group .chart-type-button-active,
+html body .chart-types-grid .chart-type-button,
+html body .chart-types-grid .chart-type-button-inactive,
+html body .chart-types-grid .chart-type-button-active {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  border: 1px solid #3b82f6 !important;
+}
+
+html body .chart-type-button-active,
+html body .page-content-group .chart-type-button-active,
+html body .chart-types-grid .chart-type-button-active {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  border: 1px solid #10b981 !important;
+}
+
+/* NUCLEAR OPTION - Force override everything */
+button.chart-type-button,
+button.chart-type-button-inactive,
+button.chart-type-button-active {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  border: 1px solid #3b82f6 !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+button.chart-type-button-active {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  border: 1px solid #10b981 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* OVERRIDE ANY PRIMARY BUTTON STYLES IN CHART TYPES */
+.chart-types-section button[class*="bg-primary"],
+.chart-types-section button[class*="primary"],
+.chart-types-section .ax-button[class*="bg-primary"],
+.chart-types-section .ax-button[class*="primary"] {
+  background-color: #ffffff !important;
+  color: #374151 !important;
+  border-color: #e5e7eb !important;
+}
+
+.chart-types-section button.selected[class*="bg-primary"],
+.chart-types-section button[data-selected="true"][class*="bg-primary"],
+.chart-types-section button.selected[class*="primary"],
+.chart-types-section button[data-selected="true"][class*="primary"],
+.chart-types-section .ax-button.selected[class*="bg-primary"],
+.chart-types-section .ax-button[data-selected="true"][class*="bg-primary"],
+.chart-types-section .ax-button.selected[class*="primary"],
+.chart-types-section .ax-button[data-selected="true"][class*="primary"] {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+/* FINAL OVERRIDE - Target all possible button elements in chart types */
+.chart-types-section * button,
+.chart-types-section * .ax-button,
+.chart-types-section * .inline-flex.items-center.justify-center {
+  background-color: #ffffff !important;
+  color: #374151 !important;
+  border-color: #e5e7eb !important;
+}
+
+.chart-types-section * button.selected,
+.chart-types-section * button[data-selected="true"],
+.chart-types-section * .ax-button.selected,
+.chart-types-section * .ax-button[data-selected="true"] {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Force override any Tailwind classes */
+.chart-types-section button.bg-primary,
+.chart-types-section button.text-primary-foreground,
+.chart-types-section .ax-button.bg-primary,
+.chart-types-section .ax-button.text-primary-foreground {
+  background-color: #ffffff !important;
+  color: #374151 !important;
+  border-color: #e5e7eb !important;
+}
+
+.chart-types-section button.selected.bg-primary,
+.chart-types-section button[data-selected="true"].bg-primary,
+.chart-types-section button.selected.text-primary-foreground,
+.chart-types-section button[data-selected="true"].text-primary-foreground {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Chart Types button focus state */
+.chart-types-section button:focus,
+.chart-types-section .ax-button:focus {
+  outline: 2px solid hsl(var(--ring)) !important;
+  outline-offset: 2px !important;
+}
+
+/* Ultra-strong Chart Types button overrides */
+.chart-types-section button,
+.chart-types-section .ax-button,
+.chart-types-section button[class*="bg-"],
+.chart-types-section .ax-button[class*="bg-"],
+.chart-types-section button[class*="primary"],
+.chart-types-section .ax-button[class*="primary"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-shadow: none !important;
+}
+
+/* Override any primary button styles in Chart Types section */
+.chart-types-section button[class*="bg-primary"],
+.chart-types-section .ax-button[class*="bg-primary"],
+.chart-types-section button[class*="primary"],
+.chart-types-section .ax-button[class*="primary"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Chart Types selected state - ultra strong */
+.chart-types-section button.selected,
+.chart-types-section button[data-selected="true"],
+.chart-types-section .ax-button.selected,
+.chart-types-section .ax-button[data-selected="true"],
+.chart-types-section button.selected[class*="bg-"],
+.chart-types-section button[data-selected="true"][class*="bg-"],
+.chart-types-section .ax-button.selected[class*="bg-"],
+.chart-types-section .ax-button[data-selected="true"][class*="bg-"] {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--accent)) !important;
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.1) !important;
+}
+
+/* Ultra-strong Chart Types button overrides - Dark mode */
+.dark .chart-types-section button,
+.dark .chart-types-section .ax-button,
+.dark .chart-types-section button[class*="bg-"],
+.dark .chart-types-section .ax-button[class*="bg-"],
+.dark .chart-types-section button[class*="primary"],
+.dark .chart-types-section .ax-button[class*="primary"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.dark .chart-types-section button[class*="bg-primary"],
+.dark .chart-types-section .ax-button[class*="bg-primary"],
+.dark .chart-types-section button[class*="primary"],
+.dark .chart-types-section .ax-button[class*="primary"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .chart-types-section button.selected,
+.dark .chart-types-section button[data-selected="true"],
+.dark .chart-types-section .ax-button.selected,
+.dark .chart-types-section .ax-button[data-selected="true"] {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--accent)) !important;
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.1) !important;
+}
+
+/* Ultra-strong Chart Types button overrides - Light mode */
+.light .chart-types-section button,
+.light .chart-types-section .ax-button,
+.light .chart-types-section button[class*="bg-"],
+.light .chart-types-section .ax-button[class*="bg-"],
+.light .chart-types-section button[class*="primary"],
+.light .chart-types-section .ax-button[class*="primary"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.light .chart-types-section button[class*="bg-primary"],
+.light .chart-types-section .ax-button[class*="bg-primary"],
+.light .chart-types-section button[class*="primary"],
+.light .chart-types-section .ax-button[class*="primary"] {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.light .chart-types-section button.selected,
+.light .chart-types-section button[data-selected="true"],
+.light .chart-types-section .ax-button.selected,
+.light .chart-types-section .ax-button[data-selected="true"] {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--accent)) !important;
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.1) !important;
+}

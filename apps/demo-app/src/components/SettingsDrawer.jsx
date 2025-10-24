@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import { AxButton } from '@ax/uilib';
 import './SettingsDrawer.css';
 
 const SettingsDrawer = () => {
@@ -15,16 +16,43 @@ const SettingsDrawer = () => {
   const handleThemeToggle = () => {
     console.log('Theme toggle clicked, current theme:', theme);
     console.log('About to toggle theme...');
+    console.log('Document classes before toggle:', document.documentElement.classList.toString());
+    
+    // Check CSS variables before toggle
+    const root = document.documentElement;
+    const bgColorBefore = getComputedStyle(root).getPropertyValue('--bg-color');
+    const textColorBefore = getComputedStyle(root).getPropertyValue('--text-color');
+    const backgroundBefore = getComputedStyle(root).getPropertyValue('--background');
+    const foregroundBefore = getComputedStyle(root).getPropertyValue('--foreground');
+    console.log('CSS variables before toggle:', { bgColorBefore, textColorBefore, backgroundBefore, foregroundBefore });
+    
     toggleTheme();
     console.log('Theme toggle function called');
+    
+    // Check after a short delay
+    setTimeout(() => {
+      console.log('Document classes after toggle:', document.documentElement.classList.toString());
+      const bodyStyles = getComputedStyle(document.body);
+      console.log('Body background after toggle:', bodyStyles.backgroundColor);
+      console.log('Body color after toggle:', bodyStyles.color);
+      
+      // Check CSS variables after toggle
+      const bgColorAfter = getComputedStyle(root).getPropertyValue('--bg-color');
+      const textColorAfter = getComputedStyle(root).getPropertyValue('--text-color');
+      const backgroundAfter = getComputedStyle(root).getPropertyValue('--background');
+      const foregroundAfter = getComputedStyle(root).getPropertyValue('--foreground');
+      console.log('CSS variables after toggle:', { bgColorAfter, textColorAfter, backgroundAfter, foregroundAfter });
+    }, 100);
   };
 
   return (
     <>
       {/* Settings Button */}
-      <button 
+      <AxButton 
         className="settings-trigger"
         onClick={toggleDrawer}
+        variant="ghost"
+        size="icon"
         aria-label="Open settings"
       >
         <svg 
@@ -40,7 +68,7 @@ const SettingsDrawer = () => {
           <circle cx="12" cy="12" r="3"/>
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
         </svg>
-      </button>
+      </AxButton>
 
       {/* Overlay */}
       {isOpen && (
@@ -54,9 +82,11 @@ const SettingsDrawer = () => {
       <div className={`settings-drawer ${isOpen ? 'open' : ''}`}>
         <div className="settings-header">
           <h3>Settings</h3>
-          <button 
+          <AxButton 
             className="settings-close"
             onClick={toggleDrawer}
+            variant="ghost"
+            size="icon"
             aria-label="Close settings"
           >
             <svg 
@@ -72,7 +102,7 @@ const SettingsDrawer = () => {
               <line x1="18" y1="6" x2="6" y2="18"/>
               <line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
-          </button>
+          </AxButton>
         </div>
 
         <div className="settings-content">

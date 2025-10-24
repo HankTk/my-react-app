@@ -169,14 +169,14 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
     data = [], 
     columns = [], 
     loading, 
-    emptyMessage = "データがありません", 
+    emptyMessage = "No data available", 
     onRowClick,
     pagination = false,
     pageSize = 10,
     currentPage = 1,
     onPageChange,
     searchable = false,
-    searchPlaceholder = "検索...",
+    searchPlaceholder = "Search...",
     searchValue = "",
     onSearchChange,
     filterable = false,
@@ -265,11 +265,11 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
       }
     }
 
-    // データの処理（検索、フィルタリング、ソート）
+    // Data processing (search, filtering, sorting)
     const processedData = React.useMemo(() => {
       let result = [...data]
 
-      // 検索
+      // Search
       if (searchVal) {
         result = result.filter(row =>
           columns.some(column => {
@@ -279,7 +279,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
         )
       }
 
-      // フィルタリング
+      // Filtering
       Object.entries(filterVal).forEach(([key, value]) => {
         if (value !== undefined && value !== null && value !== '') {
           result = result.filter(row => {
@@ -292,7 +292,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
         }
       })
 
-      // ソート
+      // Sorting
       if (sortConfig) {
         result = result.sort((a, b) => {
           const aVal = a[sortConfig.key]
@@ -311,7 +311,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
       return result
     }, [data, searchVal, filterVal, sortConfig, columns])
 
-    // ページネーション
+    // Pagination
     const paginatedData = React.useMemo(() => {
       if (!pagination) return processedData
       
@@ -325,7 +325,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
     if (loading) {
       return (
         <div className="w-full">
-          {/* 検索・フィルター・エクスポートバー */}
+          {/* Search, Filter, Export Bar */}
           {(searchable || filterable || exportable) && (
             <div className="flex items-center gap-4 p-4 border-b">
               {searchable && (
@@ -346,7 +346,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
                   className="flex items-center gap-2 px-3 py-2 text-sm border border-input rounded-md hover:bg-muted"
                 >
                   <Download className="h-4 w-4" />
-                  エクスポート
+                  Export
                 </button>
               )}
             </div>
@@ -372,7 +372,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
                 ))}
                 {actions.length > 0 && (
                   <AxTableHead variant={variant} className="w-12">
-                    アクション
+                    Actions
                   </AxTableHead>
                 )}
               </AxTableRow>
@@ -400,11 +400,11 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
             </AxTableBody>
           </table>
           
-          {/* ページネーション */}
+          {/* Pagination */}
           {pagination && (
             <div className="flex items-center justify-between p-4 border-t">
               <div className="text-sm text-muted-foreground">
-                {processedData.length}件中 {Math.min((currentPageVal - 1) * pageSize + 1, processedData.length)}-{Math.min(currentPageVal * pageSize, processedData.length)}件を表示
+                Showing {Math.min((currentPageVal - 1) * pageSize + 1, processedData.length)}-{Math.min(currentPageVal * pageSize, processedData.length)} of {processedData.length} items
               </div>
               <div className="flex items-center gap-2">
                 <button
@@ -433,7 +433,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
 
     return (
       <div className="w-full">
-        {/* 検索・フィルター・エクスポートバー */}
+        {/* Search, Filter, Export Bar */}
         {(searchable || filterable || exportable) && (
           <div className="flex items-center gap-4 p-4 border-b">
             {searchable && (
@@ -451,7 +451,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
             {filterable && (
               <div className="flex items-center gap-2">
                 <Filter className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">フィルター</span>
+                <span className="text-sm text-muted-foreground">Filter</span>
               </div>
             )}
             {exportable && onExport && (
@@ -460,7 +460,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
                 className="flex items-center gap-2 px-3 py-2 text-sm border border-input rounded-md hover:bg-muted"
               >
                 <Download className="h-4 w-4" />
-                エクスポート
+                Export
               </button>
             )}
           </div>
@@ -512,7 +512,7 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
               ))}
               {actions.length > 0 && (
                 <AxTableHead variant={variant} className="w-12">
-                  アクション
+                  Actions
                 </AxTableHead>
               )}
             </AxTableRow>
@@ -593,11 +593,11 @@ const AxDataTable = React.forwardRef<HTMLTableElement, AxDataTableProps>(
           </AxTableBody>
         </table>
         
-        {/* ページネーション */}
+        {/* Pagination */}
         {pagination && (
           <div className="flex items-center justify-between p-4 border-t">
             <div className="text-sm text-muted-foreground">
-              {processedData.length}件中 {Math.min((currentPageVal - 1) * pageSize + 1, processedData.length)}-{Math.min(currentPageVal * pageSize, processedData.length)}件を表示
+              Showing {Math.min((currentPageVal - 1) * pageSize + 1, processedData.length)}-{Math.min(currentPageVal * pageSize, processedData.length)} of {processedData.length} items
             </div>
             <div className="flex items-center gap-2">
               <button

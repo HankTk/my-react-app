@@ -44,38 +44,47 @@
 .spacing-demo {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-md);
+  gap: 1rem !important;
   align-items: center;
+  margin-bottom: var(--spacing-md);
 }
 
 .spacing-box {
-  padding: var(--spacing-md);
-  background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
-  border-radius: var(--radius);
+  /* AxButton handles its own styling, but we can override for demo purposes */
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  border: none !important;
   font-weight: 500;
   text-align: center;
   min-width: 120px;
+  width: 120px !important;
+  height: 40px !important;
 }
 
+/* Override AxButton default styles to show spacing differences */
 .spacing-box.spacing-xs {
-  padding: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm) !important;
+  font-size: var(--font-size-xs) !important;
 }
 
 .spacing-box.spacing-sm {
-  padding: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md) !important;
+  font-size: var(--font-size-sm) !important;
 }
 
 .spacing-box.spacing-md {
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg) !important;
+  font-size: var(--font-size-base) !important;
 }
 
 .spacing-box.spacing-lg {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-xl) !important;
+  font-size: var(--font-size-lg) !important;
 }
 
 .spacing-box.spacing-xl {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-xl) calc(var(--spacing-xl) + var(--spacing-sm)) !important;
+  font-size: var(--font-size-xl) !important;
 }
 
 /* Typography Demo */
@@ -118,70 +127,77 @@
 /* Shadow Demo */
 .shadow-demo {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: 1rem !important;
   flex-wrap: wrap;
+  margin-bottom: var(--spacing-md);
 }
 
 .shadow-box {
-  padding: var(--spacing-lg);
-  background-color: hsl(var(--card));
-  border-radius: var(--radius);
-  border: 1px solid hsl(var(--border));
+  /* AxButton handles its own styling, but we can override for demo purposes */
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: var(--radius) !important;
   text-align: center;
   font-weight: 500;
-  color: hsl(var(--foreground));
   min-width: 150px;
+  width: 150px !important;
+  height: 60px !important;
 }
 
 .shadow-box.shadow-sm {
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-sm) !important;
 }
 
 .shadow-box.shadow-md {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-md) !important;
 }
 
 .shadow-box.shadow-lg {
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-lg) !important;
 }
 
 /* Color Demo */
 .color-demo {
   display: flex;
-  gap: var(--spacing-md);
+  gap: 1rem !important;
   flex-wrap: wrap;
+  margin-bottom: var(--spacing-md);
 }
 
 .color-box {
-  padding: var(--spacing-lg);
-  border-radius: var(--radius);
+  /* AxButton handles its own styling, but we can override for demo purposes */
+  border-radius: var(--radius) !important;
   text-align: center;
   font-weight: 500;
   min-width: 120px;
-  color: white;
+  width: 120px !important;
+  height: 50px !important;
 }
 
 .color-box.primary {
-  background-color: hsl(var(--primary));
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
 }
 
 .color-box.secondary {
-  background-color: hsl(var(--secondary));
-  color: hsl(var(--secondary-foreground));
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--secondary-foreground)) !important;
 }
 
 .color-box.accent {
-  background-color: hsl(var(--accent));
-  color: hsl(var(--accent-foreground));
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
 }
 
 .color-box.muted {
-  background-color: hsl(var(--muted));
-  color: hsl(var(--muted-foreground));
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--muted-foreground)) !important;
 }
 
 .color-box.destructive {
-  background-color: hsl(var(--destructive));
+  background-color: hsl(var(--destructive)) !important;
+  color: hsl(var(--destructive-foreground)) !important;
 }
 
 /* Custom Demo */
@@ -191,15 +207,16 @@
 }
 
 .custom-box {
-  padding: var(--spacing-xl);
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
-  color: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
+  /* AxButton handles its own styling, but we can override for demo purposes */
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary))) !important;
+  color: white !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-lg) !important;
   font-size: var(--font-size-lg);
   font-weight: 600;
   text-align: center;
   min-width: 300px;
+  border: none !important;
 }
 
 /* Responsive Design */

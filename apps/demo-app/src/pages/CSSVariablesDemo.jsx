@@ -1,4 +1,5 @@
 import React from 'react';
+import { AxButton } from '@ax/uilib';
 import './CSSVariablesDemo.css';
 
 const CSSVariablesDemo = () => {
@@ -13,11 +14,11 @@ const CSSVariablesDemo = () => {
         <div className="demo-section">
           <h2 className="demo-section-title">Spacing Variables</h2>
           <div className="spacing-demo">
-            <div className="spacing-box spacing-xs">XS Spacing</div>
-            <div className="spacing-box spacing-sm">SM Spacing</div>
-            <div className="spacing-box spacing-md">MD Spacing</div>
-            <div className="spacing-box spacing-lg">LG Spacing</div>
-            <div className="spacing-box spacing-xl">XL Spacing</div>
+            <AxButton variant="default" size="xs" className="spacing-box spacing-xs">XS Spacing</AxButton>
+            <AxButton variant="default" size="sm" className="spacing-box spacing-sm">SM Spacing</AxButton>
+            <AxButton variant="default" size="default" className="spacing-box spacing-md">MD Spacing</AxButton>
+            <AxButton variant="default" size="lg" className="spacing-box spacing-lg">LG Spacing</AxButton>
+            <AxButton variant="default" size="xl" className="spacing-box spacing-xl">XL Spacing</AxButton>
           </div>
         </div>
 
@@ -35,27 +36,27 @@ const CSSVariablesDemo = () => {
         <div className="demo-section">
           <h2 className="demo-section-title">Shadow Variables</h2>
           <div className="shadow-demo">
-            <div className="shadow-box shadow-sm">Small Shadow</div>
-            <div className="shadow-box shadow-md">Medium Shadow</div>
-            <div className="shadow-box shadow-lg">Large Shadow</div>
+            <AxButton variant="secondary" size="sm" className="shadow-box shadow-sm">Small Shadow</AxButton>
+            <AxButton variant="secondary" size="sm" className="shadow-box shadow-md">Medium Shadow</AxButton>
+            <AxButton variant="secondary" size="sm" className="shadow-box shadow-lg">Large Shadow</AxButton>
           </div>
         </div>
 
         <div className="demo-section">
           <h2 className="demo-section-title">Color Variables</h2>
           <div className="color-demo">
-            <div className="color-box primary">Primary</div>
-            <div className="color-box secondary">Secondary</div>
-            <div className="color-box accent">Accent</div>
-            <div className="color-box muted">Muted</div>
-            <div className="color-box destructive">Destructive</div>
+            <AxButton variant="default" size="sm" className="color-box primary">Primary</AxButton>
+            <AxButton variant="secondary" size="sm" className="color-box secondary">Secondary</AxButton>
+            <AxButton variant="outline" size="sm" className="color-box accent">Accent</AxButton>
+            <AxButton variant="outline" size="sm" className="color-box muted">Muted</AxButton>
+            <AxButton variant="destructive" size="sm" className="color-box destructive">Destructive</AxButton>
           </div>
         </div>
 
         <div className="demo-section">
           <h2 className="demo-section-title">Custom Variables</h2>
           <div className="custom-demo">
-            <div className="custom-box">Custom Box with CSS Variables</div>
+            <AxButton variant="default" size="lg" className="custom-box">Custom Box with CSS Variables</AxButton>
           </div>
         </div>
       </div>

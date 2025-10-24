@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AxInput, AxLabel } from '@ax/uilib';
+import { AxInput, AxLabel, AxButton } from '@ax/uilib';
 import './PageStyles.css';
 
 const AxInputPage = () => {
@@ -232,18 +232,22 @@ const AxInputPage = () => {
                   />
                 </div>
                 <div className="flex gap-6 mt-6" style={{ gap: '1.5rem', marginTop: '1.5rem' }}>
-                  <button 
+                  <AxButton 
                     type="submit" 
-                    className="px-6 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 font-medium"
+                    variant="default"
+                    size="default"
+                    className="submit-button"
                   >
                     Submit
-                  </button>
-                  <button 
+                  </AxButton>
+                  <AxButton 
                     type="button" 
-                    className="px-6 py-3 border border-input rounded-md hover:bg-accent font-medium"
+                    variant="outline"
+                    size="default"
+                    className="cancel-button"
                   >
                     Cancel
-                  </button>
+                  </AxButton>
                 </div>
               </form>
             </div>

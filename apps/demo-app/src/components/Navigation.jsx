@@ -15,6 +15,7 @@ const Navigation = () => {
     { path: '/chart', label: 'AxChart', icon: '📊' },
     { path: '/table', label: 'AxDataTable', icon: '📋' },
     { path: '/css-variables', label: 'CSS Variables', icon: '🎨' },
+    { path: '/dark-mode-test', label: 'Dark Mode Test', icon: '🌙' },
   ];
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AxChart, createChartData, createDataset } from '@ax/uilib';
+import { AxChart, createChartData, createDataset, AxButton } from '@ax/uilib';
 import './PageStyles.css';
 
 const ChartPage = () => {
@@ -191,17 +191,15 @@ const ChartPage = () => {
                 <div className="page-content-group-title">Chart Types</div>
                 <div className="chart-types-grid">
                   {chartTypes.map((type) => (
-                    <button
+                    <AxButton
                       key={type.value}
                       onClick={() => setSelectedChartType(type.value)}
-                      className={`chart-type-button ${
-                        selectedChartType === type.value
-                          ? 'chart-type-button-active'
-                          : 'chart-type-button-inactive'
-                      }`}
+                      variant={selectedChartType === type.value ? "default" : "outline"}
+                      size="sm"
+                      className="chart-type-button"
                     >
                       {type.label}
-                    </button>
+                    </AxButton>
                   ))}
                 </div>
               </div>

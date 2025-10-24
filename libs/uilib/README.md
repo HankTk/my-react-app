@@ -98,14 +98,14 @@ Advanced data table component with pagination, search, filtering, selection, act
 | `variant` | `'default' \| 'striped' \| 'bordered'` | `'default'` | Visual style variant |
 | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | Table size |
 | `loading` | `boolean` | `false` | Show loading skeleton |
-| `emptyMessage` | `string` | `'データがありません'` | Message when no data |
+| `emptyMessage` | `string` | `'No data available'` | Message when no data |
 | `onRowClick` | `(row: any, index: number) => void` | - | Row click handler |
 | `pagination` | `boolean` | `false` | Enable pagination |
 | `pageSize` | `number` | `10` | Number of items per page |
 | `currentPage` | `number` | `1` | Current page number |
 | `onPageChange` | `(page: number) => void` | - | Page change handler |
 | `searchable` | `boolean` | `false` | Enable global search |
-| `searchPlaceholder` | `string` | `'検索...'` | Search input placeholder |
+| `searchPlaceholder` | `string` | `'Search...'` | Search input placeholder |
 | `searchValue` | `string` | `''` | Current search value |
 | `onSearchChange` | `(value: string) => void` | - | Search change handler |
 | `filterable` | `boolean` | `false` | Enable filtering |
