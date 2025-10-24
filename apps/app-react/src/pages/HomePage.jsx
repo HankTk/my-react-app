@@ -10,7 +10,7 @@ const HomePage = () => {
     <div className="homepage">
       <div className="homepage-container">
         <header className="homepage-header">
-          <h1 className="homepage-title">Ax React Component Library</h1>
+          <h1 className="homepage-title">Ax Component Library</h1>
           <p className="homepage-subtitle">A modern, reusable React component library built with shadcn/ui, Tailwind CSS, and TypeScript.</p>
         </header>
 

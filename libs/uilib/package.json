@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "description": "A reusable React UI component library",
   "type": "module",
-  "main": "./index.js",
-  "module": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "types": "./index.d.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
-    "./styles": "./index.css"
+    "./styles": "./dist/index.css"
   },
   "files": [
     "dist",

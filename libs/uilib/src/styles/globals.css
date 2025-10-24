@@ -280,15 +280,15 @@
 
 /* Card padding classes */
 .card-padding-sm {
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) !important;
 }
 
 .card-padding-default {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-lg) !important;
 }
 
 .card-padding-lg {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-xl) !important;
 }
 
 /* Additional Tailwind utilities for cards */
@@ -301,20 +301,58 @@
 .bg-card { background-color: hsl(var(--card)); }
 .text-card-foreground { color: hsl(var(--card-foreground)); }
 .border-border { border-color: hsl(var(--border)); }
-.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-.shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
-.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-.shadow-none { box-shadow: none; }
-.border-2 { border-width: 2px; }
-.border-transparent { border-color: transparent; }
+
+/* Debug styles for card variants */
+.card-variant-default {
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.card-variant-outline {
+  border: 2px solid hsl(var(--border)) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.card-variant-ghost {
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+.card-variant-elevated {
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-2px) !important;
+  transition: all 0.3s ease !important;
+  background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.95) 100%) !important;
+}
+
+.card-variant-elevated:hover {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-4px) !important;
+}
+.shadow-sm { 
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; 
+}
+.shadow-md { 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important; 
+}
+.shadow-lg { 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important; 
+}
+.shadow-xl { 
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05) !important; 
+}
+.shadow-none { 
+  box-shadow: none !important; 
+}
+.border-2 { border-width: 2px !important; }
+.border-transparent { border-color: transparent !important; }
 
 /* Modal utilities */
 .fixed { position: fixed; }
 .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
 .z-50 { z-index: 50; }
 .z-\[9999\] { z-index: 9999; }
-.flex { display: flex; }
 .items-center { align-items: center; }
 .items-start { align-items: flex-start; }
 .justify-center { justify-content: center; }
@@ -333,7 +371,7 @@
 .dark\:bg-gray-900 { background-color: hsl(var(--card)); }
 .border-gray-200 { border-color: hsl(var(--border)); }
 .dark\:border-gray-700 { border-color: hsl(var(--border)); }
-.space-y-1\.5 > * + * { margin-top: 0.375rem; }
+.space-y-1\.5 > * + * { margin-top: 0.375rem !important; }
 .gap-2 { gap: 0.5rem; }
 .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
 .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
@@ -387,8 +425,9 @@
 .rounded-md { border-radius: 0.375rem; }
 .rounded { border-radius: 0.25rem; }
 .rounded-full { border-radius: 9999px; }
-.flex { display: flex; }
-.flex-1 { flex: 1 1 0%; }
+.flex { display: flex !important; }
+.flex-col { flex-direction: column !important; }
+.flex-1 { flex: 1 1 0% !important; }
 .items-center { align-items: center; }
 .justify-center { justify-content: center; }
 .justify-between { justify-content: space-between; }
@@ -455,8 +494,16 @@
 .text-primary { 
   color: hsl(var(--primary));
 }
-/* Additional utility classes */
-.ring-offset-background { --tw-ring-offset-color: hsl(var(--background)); }
+/* Card component specific styles */
+.card-header {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.375rem !important;
+}
+
+.card-header > * {
+  display: block !important;
+}
 
 /* Test classes for ButtonPage - Using CSS variables for theme support */
 .bg-blue-500 { background-color: hsl(var(--primary)); }

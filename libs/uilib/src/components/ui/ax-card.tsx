@@ -13,16 +13,16 @@ const cardVariants = cva(
         xl: "shadow-lg",
       },
       variant: {
-        default: "border-border",
-        outline: "border-2 border-border",
-        ghost: "border-transparent shadow-none",
-        elevated: "border-border shadow-xl",
+        default: "card-variant-default",
+        outline: "card-variant-outline",
+        ghost: "card-variant-ghost",
+        elevated: "card-variant-elevated",
       },
       padding: {
         none: "",
-        sm: "card-padding-sm",
-        default: "card-padding-default",
-        lg: "card-padding-lg",
+        sm: "",
+        default: "",
+        lg: "",
       },
     },
     defaultVariants: {
@@ -49,7 +49,7 @@ const AxCard = React.forwardRef<HTMLDivElement, AxCardProps>(
 AxCard.displayName = "AxCard"
 
 const cardHeaderVariants = cva(
-  "flex flex-col space-y-1.5",
+  "card-header",
   {
     variants: {
       padding: {
@@ -60,7 +60,7 @@ const cardHeaderVariants = cva(
       },
     },
     defaultVariants: {
-      padding: "none",
+      padding: "default",
     },
   }
 )
@@ -155,7 +155,7 @@ const cardContentVariants = cva(
       },
     },
     defaultVariants: {
-      padding: "none",
+      padding: "default",
     },
   }
 )
@@ -187,7 +187,7 @@ const cardFooterVariants = cva(
       },
     },
     defaultVariants: {
-      padding: "none",
+      padding: "default",
     },
   }
 )
