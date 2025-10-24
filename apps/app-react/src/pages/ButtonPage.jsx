@@ -22,7 +22,7 @@ const AxButtonPage = () => {
                 <div className="page-content-group-title">Loading Examples</div>
                 <div className="button-page-loading-buttons">
                   <AxButton loading>Loading Button</AxButton>
-                  <AxButton variant="outline" loading>Loading Outline</AxButton>
+                  <AxButton variant="primary-outline" loading>Loading Outline</AxButton>
                   <AxButton variant="destructive" loading>Loading Destructive</AxButton>
                 </div>
               </div>
@@ -34,7 +34,7 @@ const AxButtonPage = () => {
             <p className="button-page-text">Different visual styles for different use cases.</p>
             <div className="button-page-variants-grid">
               <div className="button-page-variant-item">
-                <AxButton variant="default">Default</AxButton>
+                <AxButton variant="primary">Primary</AxButton>
                 <p className="button-page-variant-description">Primary action</p>
               </div>
               <div className="button-page-variant-item">
@@ -42,7 +42,7 @@ const AxButtonPage = () => {
                 <p className="button-page-variant-description">Dangerous action</p>
               </div>
               <div className="button-page-variant-item">
-                <AxButton variant="outline">Outline</AxButton>
+                <AxButton variant="primary-outline">Primary Outline</AxButton>
                 <p className="button-page-variant-description">Secondary action</p>
               </div>
               <div className="button-page-variant-item">
@@ -50,7 +50,7 @@ const AxButtonPage = () => {
                 <p className="button-page-variant-description">Alternative action</p>
               </div>
               <div className="button-page-variant-item">
-                <AxButton variant="ghost">Ghost</AxButton>
+                <AxButton variant="primary-ghost">Primary Ghost</AxButton>
                 <p className="button-page-variant-description">Subtle action</p>
               </div>
               <div className="button-page-variant-item">
@@ -69,7 +69,7 @@ const AxButtonPage = () => {
                 <div className="button-page-size-buttons">
                   <AxButton size="xs">Extra Small</AxButton>
                   <AxButton size="sm">Small</AxButton>
-                  <AxButton size="default">Default</AxButton>
+                  <AxButton size="md">Medium</AxButton>
                   <AxButton size="lg">Large</AxButton>
                   <AxButton size="xl">Extra Large</AxButton>
                   <AxButton size="2xl">2X Large</AxButton>
@@ -78,9 +78,11 @@ const AxButtonPage = () => {
               <div className="button-page-size-group">
                 <h3 className="button-page-size-group-title">Icon Sizes</h3>
                 <div className="button-page-size-buttons">
+                  <AxButton size="icon-xs">🚀</AxButton>
                   <AxButton size="icon-sm">🚀</AxButton>
-                  <AxButton size="icon">🚀</AxButton>
+                  <AxButton size="icon-md">🚀</AxButton>
                   <AxButton size="icon-lg">🚀</AxButton>
+                  <AxButton size="icon-xl">🚀</AxButton>
                 </div>
               </div>
               <div className="button-page-size-group">
@@ -111,8 +113,8 @@ const AxButtonPage = () => {
                     <span className="button-page-size-description">text-sm (14px) + h-8 + px-3 py-1.5</span>
                   </div>
                   <div className="button-page-size-row">
-                    <span className="button-page-size-label">Default:</span>
-                    <AxButton size="default">Button Text</AxButton>
+                    <span className="button-page-size-label">MD:</span>
+                    <AxButton size="md">Button Text</AxButton>
                     <span className="button-page-size-description">text-sm (14px) + h-10 + px-4 py-2</span>
                   </div>
                   <div className="button-page-size-row">
@@ -184,13 +186,13 @@ const AxButtonPage = () => {
               <div className="button-page-interactive-group">
                 <div className="button-page-interactive-buttons">
                   <AxButton 
-                    variant="default" 
+                    variant="primary" 
                     onClick={() => setCount(count + 1)}
                   >
                     Count: {count}
                   </AxButton>
                   <AxButton 
-                    variant="outline" 
+                    variant="primary-outline" 
                     onClick={() => setCount(0)}
                   >
                     Reset
@@ -206,9 +208,9 @@ const AxButtonPage = () => {
             <div className="button-page-interactive-container">
               <div className="button-page-interactive-group">
                 <div className="button-page-interactive-buttons">
-                  <AxButton disabled>Disabled Default</AxButton>
+                  <AxButton disabled>Disabled Primary</AxButton>
                   <AxButton variant="destructive" disabled>Disabled Destructive</AxButton>
-                  <AxButton variant="outline" disabled>Disabled Outline</AxButton>
+                  <AxButton variant="primary-outline" disabled>Disabled Outline</AxButton>
                 </div>
               </div>
             </div>
@@ -231,14 +233,14 @@ const AxButtonPage = () => {
                   <tbody>
                     <tr>
                       <td className="page-prop-name">variant</td>
-                      <td>'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'</td>
-                      <td>'default'</td>
+                      <td>'primary' | 'primary-outline' | 'primary-ghost' | 'secondary' | 'secondary-outline' | 'secondary-ghost' | 'destructive' | 'destructive-outline' | 'destructive-ghost' | 'success' | 'success-outline' | 'success-ghost' | 'warning' | 'warning-outline' | 'warning-ghost' | 'neutral' | 'neutral-outline' | 'neutral-ghost' | 'link'</td>
+                      <td>'primary'</td>
                       <td>Visual style variant</td>
                     </tr>
                     <tr>
                       <td className="page-prop-name">size</td>
-                      <td>'xs' | 'sm' | 'default' | 'lg' | 'xl' | '2xl' | 'icon' | 'icon-sm' | 'icon-lg' | 'responsive'</td>
-                      <td>'default'</td>
+                      <td>'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'icon-xs' | 'icon-sm' | 'icon-md' | 'icon-lg' | 'icon-xl' | 'responsive'</td>
+                      <td>'md'</td>
                       <td>Size of the button with responsive options</td>
                     </tr>
                     <tr>

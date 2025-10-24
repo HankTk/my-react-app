@@ -1,33 +1,37 @@
+/* Import Design Tokens */
+@import './design-tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Force CSS variables to be available immediately */
+/* Legacy CSS Variables for Backward Compatibility */
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222.2 84% 4.9%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222.2 84% 4.9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --success: 142.1 76.2% 36.3%;
-  --success-foreground: 210 40% 98%;
-  --warning: 32.5 94.6% 43.7%;
-  --warning-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
-  --radius: 0.5rem;
+  /* Map new design tokens to legacy variables */
+  --background: var(--color-background-primary);
+  --foreground: var(--color-text-primary);
+  --card: var(--color-background-elevated);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-background-elevated);
+  --popover-foreground: var(--color-text-primary);
+  --primary: var(--color-interactive-primary);
+  --primary-foreground: var(--color-text-inverse);
+  --secondary: var(--color-interactive-secondary);
+  --secondary-foreground: var(--color-text-primary);
+  --muted: var(--color-background-secondary);
+  --muted-foreground: var(--color-text-tertiary);
+  --accent: var(--color-background-secondary);
+  --accent-foreground: var(--color-text-primary);
+  --destructive: var(--color-interactive-destructive);
+  --destructive-foreground: var(--color-text-inverse);
+  --success: var(--color-success-500);
+  --success-foreground: var(--color-text-inverse);
+  --warning: var(--color-warning-500);
+  --warning-foreground: var(--color-text-inverse);
+  --border: var(--color-border-primary);
+  --input: var(--color-border-primary);
+  --ring: var(--color-border-focus);
+  --radius: var(--radius-lg);
 }
 
 @layer base {
@@ -53,34 +57,8 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --success: 142.1 70.6% 45.3%;
-    --success-foreground: 210 40% 98%;
-    --warning: 32.5 81% 50%;
-    --warning-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 94.1%;
-    
-    /* Custom shadow variables (adjusted for dark theme) */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    /* Dark mode overrides are now handled in design-tokens.css */
+    /* Legacy variables are automatically updated through CSS custom property inheritance */
   }
 }
 
@@ -170,14 +148,53 @@
     color: hsl(var(--foreground)) !important;
   }
   
-  /* Additional visual indicators for debugging */
-  .light {
-    --theme-indicator: 'LIGHT';
-  }
-  
-  .dark {
-    --theme-indicator: 'DARK';
-  }
+/* Additional visual indicators for debugging */
+.light {
+  --theme-indicator: 'LIGHT';
+}
+
+.dark {
+  --theme-indicator: 'DARK';
+}
+
+/* Link button specific styles */
+.ax-button-link {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  height: auto !important;
+  font-weight: normal !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  display: inline-block !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  white-space: normal !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  color: hsl(var(--color-interactive-primary)) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+}
+
+.ax-button-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  text-decoration: underline !important;
+}
+
+.ax-button-link:focus {
+  background: none !important;
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ax-button-link:active {
+  background: none !important;
+  background-color: transparent !important;
+}
   
   /* Ensure smooth transitions for all theme-dependent properties */
   * {

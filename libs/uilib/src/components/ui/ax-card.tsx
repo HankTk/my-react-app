@@ -8,27 +8,27 @@ const cardVariants = cva(
     variants: {
       size: {
         sm: "shadow-sm",
-        default: "shadow-sm",
+        md: "shadow-sm",
         lg: "shadow-md",
         xl: "shadow-lg",
       },
       variant: {
-        default: "card-variant-default",
-        outline: "card-variant-outline",
-        ghost: "card-variant-ghost",
-        elevated: "card-variant-elevated",
+        default: "border-border",
+        outline: "border-2 border-border",
+        ghost: "border-transparent shadow-none",
+        elevated: "border-border shadow-lg transform -translate-y-1 transition-all duration-300 hover:shadow-xl hover:-translate-y-2",
       },
       padding: {
         none: "",
-        sm: "",
-        default: "",
-        lg: "",
+        sm: "p-4",
+        md: "p-6",
+        lg: "p-8",
       },
     },
     defaultVariants: {
-      size: "default",
+      size: "md",
       variant: "default",
-      padding: "default",
+      padding: "md",
     },
   }
 )
@@ -49,18 +49,18 @@ const AxCard = React.forwardRef<HTMLDivElement, AxCardProps>(
 AxCard.displayName = "AxCard"
 
 const cardHeaderVariants = cva(
-  "card-header",
+  "flex flex-col space-y-1.5",
   {
     variants: {
       padding: {
         none: "",
         sm: "p-4",
-        default: "p-6",
+        md: "p-6",
         lg: "p-8",
       },
     },
     defaultVariants: {
-      padding: "default",
+      padding: "md",
     },
   }
 )
@@ -86,12 +86,13 @@ const cardTitleVariants = cva(
     variants: {
       size: {
         sm: "text-lg",
-        default: "text-2xl",
-        lg: "text-3xl",
+        md: "text-xl",
+        lg: "text-2xl",
+        xl: "text-3xl",
       },
     },
     defaultVariants: {
-      size: "default",
+      size: "md",
     },
   }
 )
@@ -118,12 +119,12 @@ const cardDescriptionVariants = cva(
       size: {
         xs: "text-xs",
         sm: "text-sm",
-        default: "text-sm",
+        md: "text-sm",
         lg: "text-base",
       },
     },
     defaultVariants: {
-      size: "default",
+      size: "md",
     },
   }
 )
@@ -150,12 +151,12 @@ const cardContentVariants = cva(
       padding: {
         none: "",
         sm: "p-4 pt-0",
-        default: "p-6 pt-0",
+        md: "p-6 pt-0",
         lg: "p-8 pt-0",
       },
     },
     defaultVariants: {
-      padding: "default",
+      padding: "md",
     },
   }
 )
@@ -182,12 +183,12 @@ const cardFooterVariants = cva(
       padding: {
         none: "",
         sm: "p-4 pt-0",
-        default: "p-6 pt-0",
+        md: "p-6 pt-0",
         lg: "p-8 pt-0",
       },
     },
     defaultVariants: {
-      padding: "default",
+      padding: "md",
     },
   }
 )

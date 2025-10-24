@@ -3,30 +3,30 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 
 const modalVariants = cva(
-  "fixed inset-0 z-[9999] flex items-center justify-center",
+  "fixed inset-0 z-modal flex items-center justify-center",
   {
     variants: {
       size: {
         sm: "",
-        default: "",
+        md: "",
         lg: "",
         xl: "",
         fullscreen: "items-start",
       },
     },
     defaultVariants: {
-      size: "default",
+      size: "md",
     },
   }
 )
 
 const modalContentVariants = cva(
-  "bg-card text-card-foreground border border-border shadow-lg relative z-50",
+  "bg-card text-card-foreground border border-border shadow-lg relative z-modal",
   {
     variants: {
       size: {
         sm: "max-w-sm w-full mx-4",
-        default: "max-w-md w-full mx-4",
+        md: "max-w-md w-full mx-4",
         lg: "max-w-lg w-full mx-4",
         xl: "max-w-xl w-full mx-4",
         fullscreen: "w-full h-full max-w-none mx-0",
@@ -38,7 +38,7 @@ const modalContentVariants = cva(
       },
     },
     defaultVariants: {
-      size: "default",
+      size: "md",
       variant: "default",
     },
   }
@@ -75,27 +75,27 @@ export interface AxModalContentProps
 
 export interface AxModalHeaderProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  padding?: "none" | "sm" | "default" | "lg"
+  padding?: "none" | "sm" | "md" | "lg"
 }
 
 export interface AxModalTitleProps
   extends React.HTMLAttributes<HTMLHeadingElement> {
-  size?: "sm" | "default" | "lg"
+  size?: "sm" | "md" | "lg"
 }
 
 export interface AxModalDescriptionProps
   extends React.HTMLAttributes<HTMLParagraphElement> {
-  size?: "xs" | "sm" | "default" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 export interface AxModalBodyProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  padding?: "none" | "sm" | "default" | "lg"
+  padding?: "none" | "sm" | "md" | "lg"
 }
 
 export interface AxModalFooterProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  padding?: "none" | "sm" | "default" | "lg"
+  padding?: "none" | "sm" | "md" | "lg"
 }
 
 const AxModal = React.forwardRef<HTMLDivElement, AxModalProps>(
@@ -144,11 +144,11 @@ const AxModalContent = React.forwardRef<HTMLDivElement, AxModalContentProps>(
 AxModalContent.displayName = "AxModalContent"
 
 const AxModalHeader = React.forwardRef<HTMLDivElement, AxModalHeaderProps>(
-  ({ className, padding = "default", ...props }, ref) => {
+  ({ className, padding = "md", ...props }, ref) => {
     const paddingClasses = {
       none: "",
       sm: "p-4",
-      default: "p-6",
+      md: "p-6",
       lg: "p-8",
     }
 
@@ -164,10 +164,10 @@ const AxModalHeader = React.forwardRef<HTMLDivElement, AxModalHeaderProps>(
 AxModalHeader.displayName = "AxModalHeader"
 
 const AxModalTitle = React.forwardRef<HTMLHeadingElement, AxModalTitleProps>(
-  ({ className, size = "default", ...props }, ref) => {
+  ({ className, size = "md", ...props }, ref) => {
     const sizeClasses = {
       sm: "text-lg",
-      default: "text-xl",
+      md: "text-xl",
       lg: "text-2xl",
     }
 
@@ -183,11 +183,11 @@ const AxModalTitle = React.forwardRef<HTMLHeadingElement, AxModalTitleProps>(
 AxModalTitle.displayName = "AxModalTitle"
 
 const AxModalDescription = React.forwardRef<HTMLParagraphElement, AxModalDescriptionProps>(
-  ({ className, size = "default", ...props }, ref) => {
+  ({ className, size = "md", ...props }, ref) => {
     const sizeClasses = {
       xs: "text-xs",
       sm: "text-sm",
-      default: "text-sm",
+      md: "text-sm",
       lg: "text-base",
     }
 
@@ -203,11 +203,11 @@ const AxModalDescription = React.forwardRef<HTMLParagraphElement, AxModalDescrip
 AxModalDescription.displayName = "AxModalDescription"
 
 const AxModalBody = React.forwardRef<HTMLDivElement, AxModalBodyProps>(
-  ({ className, padding = "default", ...props }, ref) => {
+  ({ className, padding = "md", ...props }, ref) => {
     const paddingClasses = {
       none: "",
       sm: "p-4",
-      default: "p-6",
+      md: "p-6",
       lg: "p-8",
     }
 
@@ -223,11 +223,11 @@ const AxModalBody = React.forwardRef<HTMLDivElement, AxModalBodyProps>(
 AxModalBody.displayName = "AxModalBody"
 
 const AxModalFooter = React.forwardRef<HTMLDivElement, AxModalFooterProps>(
-  ({ className, padding = "default", ...props }, ref) => {
+  ({ className, padding = "md", ...props }, ref) => {
     const paddingClasses = {
       none: "",
       sm: "p-4",
-      default: "p-6",
+      md: "p-6",
       lg: "p-8",
     }
 
