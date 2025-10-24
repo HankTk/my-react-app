@@ -10,10 +10,10 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "nx serve demo-app",
-    "stop": "pkill -f \"nx serve demo-app\"",
+    "dev": "nx serve app-react",
+    "stop": "pkill -f \"nx serve app-react\"",
     "build": "nx build uilib",
-    "build:app": "nx build demo-app",
+    "build:app": "nx build app-react",
     "build:lib": "nx build uilib",
     "lint": "nx lint",
     "test": "nx test",

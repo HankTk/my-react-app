@@ -29,7 +29,7 @@ This monorepo contains a modern React UI component library built with TypeScript
 │       ├── dist/             # Built library output
 │       └── package.json
 ├── apps/
-│   └── demo-app/            # Demo application showcasing the library
+│   └── app-react/            # Demo application showcasing the library
 │       ├── src/
 │       │   ├── components/  # Layout and navigation components
 │       │   ├── pages/       # Component showcase pages (Button, Card, Chart, Input, Label, Modal, Table)
@@ -73,7 +73,7 @@ A modern, reusable React UI component library built with TypeScript, Tailwind CS
 - Class Variance Authority for variant management
 - Tailwind Merge for class merging
 
-### Demo App (`apps/demo-app/`)
+### Demo App (`apps/app-react/`)
 
 A comprehensive demonstration application that showcases all components from the library with interactive examples and documentation.
 
@@ -140,13 +140,13 @@ This project uses Nx for build orchestration and development. You can also use N
 
 ```bash
 # Start the demo app
-npx nx serve demo-app
+npx nx serve app-react
 
 # Build the UI library
 npx nx build uilib
 
 # Build the demo app
-npx nx build demo-app
+npx nx build app-react
 
 # Run linting
 npx nx lint
@@ -159,9 +159,9 @@ npx nx test
 
 ### Root Level
 
-- `npm run dev` - Start the demo application (uses `nx serve demo-app`)
+- `npm run dev` - Start the demo application (uses `nx serve app-react`)
 - `npm run build` - Build the UI library (uses `nx build uilib`)
-- `npm run build:app` - Build the demo application (uses `nx build demo-app`)
+- `npm run build:app` - Build the demo application (uses `nx build app-react`)
 - `npm run build:lib` - Build the UI library (uses `nx build uilib`)
 - `npm run lint` - Run ESLint on all packages (uses `nx lint`)
 - `npm run test` - Run tests (uses `nx test`)
@@ -175,7 +175,7 @@ npx nx test
 - `npm run build:types` - Build TypeScript types
 - `npm run clean` - Clean build artifacts
 
-### Demo App (`apps/demo-app/`)
+### Demo App (`apps/app-react/`)
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
@@ -208,7 +208,7 @@ npx nx test
    npx nx build uilib --watch
    
    # Serve demo app
-   npx nx serve demo-app
+   npx nx serve app-react
    
    # Run linting
    npx nx lint
@@ -239,7 +239,7 @@ This project uses a comprehensive CSS variable system for consistent theming and
 
 ### Current CSS Variables
 
-The project defines CSS variables in `/libs/uilib/src/styles/globals.css` and `/apps/demo-app/src/index.css`:
+The project defines CSS variables in `/libs/uilib/src/styles/globals.css` and `/apps/app-react/src/index.css`:
 
 #### Color Variables (HSL Format)
 ```css

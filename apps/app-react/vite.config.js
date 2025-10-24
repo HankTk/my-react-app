@@ -4,7 +4,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin'
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/demo-app',
+  cacheDir: '../../node_modules/.vite/apps/app-react',
 
   server: {
     port: 3000,
@@ -20,7 +20,7 @@ export default defineConfig({
 
 
   build: {
-    outDir: '../../dist/apps/demo-app',
+    outDir: '../../dist/apps/app-react',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
